@@ -11,12 +11,12 @@ export const Build = sequelize.define('builds', {
     type: DataTypes.NUMBER
   },
   area: {
-    type: DataTypes.DOUBLE
+    type: DataTypes.FLOAT
   },
   addres: {
     type: DataTypes.STRING
   },
   type_build: {
-    type: DataTypes.ENUM(['industrial', 'comercial', 'recidencial'])
+    type: DataTypes.ENUM(['INDUSTRIAL', 'COMERCIAL', 'RESIDENCIAL'])
   }
 }, { timestamps: false })
