@@ -18,6 +18,12 @@ export async function startApolloServer(typeDefs, resolvers) {
 
   app.use("/graphql", cors(), express.json(), expressMiddleware(server))
 
+  app.use((req, res) => {
+    res.status(404).json({
+      error: 'Rout Not Found'
+    })
+  })
+
   await new Promise((resolve) => httpServer.listen({ port: env.PORT }, resolve))
   console.log(`🚀 Server ready at http://localhost:${env.PORT}`)
 }
