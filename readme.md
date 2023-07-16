@@ -1,5 +1,4 @@
-/*
-NOTE: predial
+MODEL: predial
 num pedrial
 avaluo
 nombre
@@ -9,19 +8,13 @@ propietarios FK
 construcciones FK
 terreno! FK
 
-NOTE: tipo de propietaio
-naturares: 1
-juridicas: 2
-
-NOTE: Propietario
+MODEL: Propietario
+tipo de propietaio: enum(naturares, juridicas)
 1
 tipo documento
 num documento
 nombres
 apellidos
-direccion
-phone
-email!
 2
 NIT
 razon social
@@ -29,25 +22,15 @@ direccion
 phone
 email!
 
-NOTE: Tipo de construccion
-industrial: 1
-comercial: 2
-recidencial: 3
-
-NOTE: Constricciones
+MODEL: Constricciones
 catidad de pisos
-tipo de construccion FK
 area total
-street
+direccion
+tipo de construccion: enum(industrial, comercial, recidencial)
 
-NOTE: Tipo terreno
-rural: 1
-urbano: 2
-
-NOTE: Terrenos
+MODEL: Terrenos
 area
 valor comercial
 cerca de lagos
-tipo terreno FK
+tipo terreno: enum(rural, urbano)
 construcciones FK boolean
-*/
