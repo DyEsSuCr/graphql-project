@@ -1,4 +1,8 @@
 import { startApolloServer } from './app.js'
 import { typeDefs, resolvers } from './resolvers/index.js'
+import { dbConnect } from './database/connect.js'
 
-await startApolloServer(typeDefs, resolvers)
+import './models/index.js'
+
+startApolloServer(typeDefs, resolvers)
+dbConnect()
