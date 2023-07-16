@@ -8,15 +8,20 @@ export const Land = sequelize.define('land', {
     defaultValue: DataTypes.UUIDV4
   },
   area: {
-    type: DataTypes.DOUBLE
+    type: DataTypes.DOUBLE,
+    allowNull: false
   },
   commercial_value: {
-    type: DataTypes.DOUBLE
+    type: DataTypes.DOUBLE,
+    allowNull: false
   },
   water_sources: {
-    type: DataTypes.BOOLEAN
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+    allowNull: false
   },
   type_land: {
-    type: DataTypes.ENUM(['rural', 'urbano'])
+    type: DataTypes.ENUM(['rural', 'urbano']),
+    allowNull: false
   }
 }, { timestamps: false })

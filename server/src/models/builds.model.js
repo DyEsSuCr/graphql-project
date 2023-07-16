@@ -8,15 +8,19 @@ export const Build = sequelize.define('builds', {
     defaultValue: DataTypes.UUIDV4
   },
   floors: {
-    type: DataTypes.NUMBER
+    type: DataTypes.NUMBER,
+    allowNull: false
   },
   area: {
-    type: DataTypes.FLOAT
+    type: DataTypes.FLOAT,
+    allowNull: false
   },
   addres: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull: false
   },
   type_build: {
-    type: DataTypes.ENUM(['INDUSTRIAL', 'COMERCIAL', 'RESIDENCIAL'])
+    type: DataTypes.ENUM(['INDUSTRIAL', 'COMERCIAL', 'RESIDENCIAL']),
+    allowNull: false
   }
 }, { timestamps: false })

@@ -8,15 +8,19 @@ export const Property = sequelize.define('property', {
     defaultValue: DataTypes.UUIDV4
   },
   appraisal: {
-    type: DataTypes.DOUBLE
+    type: DataTypes.DOUBLE,
+    allowNull: false
   },
   name: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull: false
   },
   departament: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull: false
   },
   town: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull: false
   }
 }, { timestamps: false })
