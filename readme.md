@@ -4,9 +4,9 @@ avaluo
 nombre
 departamento
 municipio
-propietarios FK
-construcciones FK
-terreno! FK
+propietarios FK 1-1
+construcciones FK 1-m
+terreno! FK 1-1
 
 MODEL: Propietario
 tipo de propietaio: enum(naturares, juridicas)
