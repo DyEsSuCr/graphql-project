@@ -21,7 +21,13 @@ export const typeDefs = gql`
   }
 
   extend type Mutation {
-    createBuild(floors: Int!, area: Float!, addres: String!, type_build: TypeBuild!): Build
+    createBuild(
+      floors: Int!,
+      area: Float!,
+      addres: String!,
+      type_build: 
+      TypeBuild!
+    ): Build
   }
 `
 
