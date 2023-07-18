@@ -21,7 +21,7 @@ export const Land = sequelize.define('land', {
     allowNull: false
   },
   type_land: {
-    type: DataTypes.ENUM(['rural', 'urbano']),
+    type: DataTypes.ENUM(['RURAL', 'URBANO']),
     allowNull: false
   }
 }, { timestamps: false })

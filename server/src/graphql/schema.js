@@ -1,6 +1,7 @@
 import { gql } from 'graphql-tag'
 import { typeDefs as Build, resolvers as BuildReolvers } from './builds.js'
 import { typeDefs as Owner, resolvers as OwnerReolvers } from './owners.js'
+import { typeDefs as Land, resolvers as LandReolvers } from './lands.js'
 
 const rootTypeDefs = gql`
   type Query {
@@ -12,6 +13,6 @@ const rootTypeDefs = gql`
   }
 `
 
-export const typeDefs = [rootTypeDefs, Build, Owner]
+export const typeDefs = [rootTypeDefs, Build, Owner, Land]
 
-export const resolvers = [BuildReolvers, OwnerReolvers]
+export const resolvers = [BuildReolvers, OwnerReolvers, LandReolvers]
