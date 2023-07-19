@@ -1,0 +1,47 @@
+import { useQuery } from '@apollo/client'
+import { GET_PROPERTYS } from '../graphql/propertys'
+import { Table } from 'antd'
+
+const colums = [
+  {
+    title: 'Nombre',
+    dataIndex: 'name',
+    key: 'name',
+  },
+  {
+    title: 'Precio comercial',
+    dataIndex: 'appraisal',
+    key: 'appraisal',
+  },
+  {
+    title: 'Departamento',
+    dataIndex: 'departament',
+    key: 'departament',
+  },
+  {
+    title: 'Municipio',
+    dataIndex: 'town',
+    key: 'town',
+  }
+]
+
+export default function PredioList() {
+
+  const {loading, error, data} = useQuery(GET_PROPERTYS)
+
+  if (loading) return <span>loading...</span>
+  if (error) return <p>Opps</p>
+  if (data?.propertys.length <= 0) return <h1>no hay predios registados</h1>
+
+  return (
+    <div>
+      <h1>Predios registrados</h1>
+        <Table
+          columns={colums}
+          dataSource={data.propertys}
+          rowKey={(data) => data.id}
+          loading={loading}
+        />     
+    </div>
+  )
+}

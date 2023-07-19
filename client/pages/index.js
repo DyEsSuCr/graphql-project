@@ -1,5 +1,7 @@
+import PredioList from '../components/PredioList'
+
 export default function Home() {
   return (
-    <h1>home</h1>
+    <PredioList/>
   )
 }
