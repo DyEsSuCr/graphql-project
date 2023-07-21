@@ -1,6 +1,7 @@
+import Link from 'next/link'
 import { useQuery } from '@apollo/client'
 import { GET_PROPERTYS } from '../graphql/propertys'
-import { Table } from 'antd'
+import { Table, Button } from 'antd'
 
 const colums = [
   {
@@ -20,8 +21,13 @@ const colums = [
   },
   {
     title: 'Municipio',
-    dataIndex: 'town',
+    dataIndex: 'town',  
     key: 'town',
+  },
+  {
+    title: 'Acciones',
+    key: 'acciones',
+    render: ({id}) => <Link href={`propertys/${id}`}>Mas informacion</Link>
   }
 ]
 
