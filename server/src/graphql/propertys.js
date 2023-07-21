@@ -12,6 +12,7 @@ export const typeDefs = gql`
 
   extend type Query {
     propertys: [Property]
+    property(id: ID!): Property 
   }
   
   extend type Mutation {
@@ -26,7 +27,8 @@ export const typeDefs = gql`
 
 export const resolvers = {
   Query: {
-    propertys: async () => await Property.findAll()
+    propertys: async () => await Property.findAll(),
+    property: async (_, { id }) => await Property.findByPk(id)
   },
 
   Mutation: {
