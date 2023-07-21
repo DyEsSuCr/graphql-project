@@ -11,7 +11,7 @@ export const typeDefs = gql`
   }
 
   extend type Query {
-    Propertys: [Property]
+    propertys: [Property]
   }
   
   extend type Mutation {
@@ -26,7 +26,7 @@ export const typeDefs = gql`
 
 export const resolvers = {
   Query: {
-    Propertys: async () => await Property.findAll()
+    propertys: async () => await Property.findAll()
   },
 
   Mutation: {
