@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useQuery } from '@apollo/client'
 import { GET_PROPERTYS } from '../graphql/propertys'
-import { Table, Button } from 'antd'
+import { Table } from 'antd'
 
 const colums = [
   {
@@ -41,7 +41,10 @@ export default function PredioList() {
 
   return (
     <div>
-      <h1>Predios registrados</h1>
+      <div style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center'}}>
+        <h1>Predios registrados</h1>
+        <Link href={`/propertys/form`} style={{backgroundColor: '#0be122', color: '#000', padding: '.5rem'}}>Crear predio</Link>
+      </div>
         <Table
           columns={colums}
           dataSource={data.propertys}

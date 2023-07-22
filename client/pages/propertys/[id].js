@@ -4,7 +4,7 @@ import { GET_PROPERTY } from '../../graphql/propertys'
 
 export default function Property() {
   const {query} = useRouter()
-  console.log(query.id)
+  
   const {data} = useQuery(GET_PROPERTY, {
     variables: {
       id: query.id
