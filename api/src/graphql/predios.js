@@ -1,5 +1,5 @@
 import { gql } from 'graphql-tag'
-import { Predio } from '../models/index.js'
+import { Predio, Contruccion } from '../models/index.js'
 
 export const typeDefs = gql`
   type Property {
@@ -8,11 +8,12 @@ export const typeDefs = gql`
     nombre: String
     departamento: String
     municipio: String
+    construccion: [Build]
   }
 
   extend type Query {
     propertys: [Property]
-    property(id: ID!): Property 
+    property(id: ID!): Property
   }
   
   extend type Mutation {
@@ -40,5 +41,9 @@ export const resolvers = {
       if (!foundProperty) throw new Error('Predio no encontrado')
       return foundProperty
     }
+  },
+
+  Property: {
+    construccion: async ({ id }) => await Contruccion.findAll({ where: { predioId: id } })
   }
 }
