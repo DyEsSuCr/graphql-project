@@ -11,13 +11,13 @@ Predio.belongsTo(Propietario, {
   targetKey: 'id'
 })
 
-Contruccion.hasMany(Predio, {
-  foreignKey: 'construccionId',
+Predio.hasMany(Contruccion, {
+  foreignKey: 'predioId',
   sourceKey: 'id'
 })
 
-Predio.belongsTo(Contruccion, {
-  foreignKey: 'construccionId',
+Contruccion.belongsTo(Predio, {
+  foreignKey: 'predioId',
   targetKey: 'id'
 })
 

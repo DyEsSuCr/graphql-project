@@ -26,6 +26,7 @@ export const typeDefs = gql`
       area: Float!,
       direccion: String!,
       tipo_construccion: TypeBuild!
+      predioId: ID!
     ): Build
   }
 `
