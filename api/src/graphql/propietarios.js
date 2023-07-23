@@ -41,10 +41,11 @@ export const typeDefs = gql`
       direccion: String!
       num_celular: String!
       correo: String
-      NIT: String
-      razon_social: String
+      NIT: String!
+      razon_social: String!
       tipo_propietario: TypeOwner!
       tipo_documento: TypeDocument!
+      predioId: ID!
     ): Owner
   }
 `
