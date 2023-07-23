@@ -31,6 +31,7 @@ export const typeDefs = gql`
 
   extend type Query {
     owners: [Owner]
+    owner: Owner
   }
 
   extend type Mutation {
@@ -47,15 +48,25 @@ export const typeDefs = gql`
       tipo_documento: TypeDocument!
       predioId: ID!
     ): Owner
+
+    removeOwner(id: ID!): Owner
   }
 `
 
 export const resolvers = {
   Query: {
-    owners: async () => await Propietario.findAll()
+    owners: async () => await Propietario.findAll(),
+    owner: async (_, { id }) => await Propietario.findByPk(id)
   },
 
   Mutation: {
-    insertOwner: async (_, args) => await Propietario.create(args)
+    insertOwner: async (_, args) => await Propietario.create(args),
+    removeOwner: async (_, { id }) => {
+      const foundOwner = await Propietario.findByPk(id)
+      if (!foundOwner) throw new Error('Propietario no encontrado')
+
+      foundOwner.destroy()
+      return foundOwner
+    }
   }
 }
