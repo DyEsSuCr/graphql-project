@@ -26,14 +26,14 @@ export const typeDefs = gql`
       municipio: String!
     ): Property
 
-    removeProperty(id: ID!): Property
-
     updateProperty(
       id: ID!
       nombre: String
       departamento: String
       municipio: String
     ): Property
+
+    removeProperty(id: ID!): Property
   }
 `
 

@@ -30,9 +30,15 @@ export const typeDefs = gql`
       predioId: ID!
     ): Build
 
-    removeBuild(id: ID!): Build
+    updateBuild(
+      id: ID!
+      pisos: Int
+      area: Float
+      direccion: String
+      tipo_construccion: TypeBuild
+    ): Build
 
-    updateBuild(id: ID!): Build
+    removeBuild(id: ID!): Build
   }
 `
 
