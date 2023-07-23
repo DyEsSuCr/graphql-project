@@ -30,6 +30,8 @@ export const typeDefs = gql`
     ): Build
 
     removeBuild(id: ID!): Build
+
+    updateBuild(id: ID!): Build
   }
 `
 
@@ -40,6 +42,18 @@ export const resolvers = {
 
   Mutation: {
     insertBuild: async (_, args) => await Contruccion.create(args),
+
+    updateBuild: async (_, args) => {
+      const foundBuild = await Contruccion.findByPk(args.id)
+      if (!foundBuild) throw new Error('Construccion no encontrada')
+
+      if (args.pisos) foundBuild.pisos = args.pisos
+      if (args.area) foundBuild.area = args.area
+      if (args.direccion) foundBuild.direccion = args.direccion
+      if (args.tipo_construccion) foundBuild.tipo_construccion = args.tipo_construccion
+
+      return await foundBuild.save()
+    },
 
     removeBuild: async (_, { id }) => {
       const foundBuild = await Contruccion.findByPk(id)
