@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-export default function PageLayout({children, title = 'GeoSat'}) {
+export default function defaultLayout({children, title = 'GeoSat'}) {
   return (
     <>
     <Head>

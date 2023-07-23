@@ -1,13 +1,13 @@
 import { DataTypes } from 'sequelize'
 import { sequelize } from '../database/connect.js'
 
-export const Build = sequelize.define('builds', {
+export const Contruccion = sequelize.define('Contruccion', {
   id: {
     type: DataTypes.UUID,
     primaryKey: true,
     defaultValue: DataTypes.UUIDV4
   },
-  floors: {
+  pisos: {
     type: DataTypes.NUMBER,
     allowNull: false
   },
@@ -15,11 +15,11 @@ export const Build = sequelize.define('builds', {
     type: DataTypes.FLOAT,
     allowNull: false
   },
-  addres: {
+  direccion: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  type_build: {
+  tipo_construccion: {
     type: DataTypes.ENUM(['INDUSTRIAL', 'COMERCIAL', 'RESIDENCIAL']),
     allowNull: false
   }

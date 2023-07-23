@@ -1,27 +1,26 @@
 import { DataTypes } from 'sequelize'
 import { sequelize } from '../database/connect.js'
 
-export const Land = sequelize.define('land', {
+export const Predio = sequelize.define('Predio', {
   id: {
     type: DataTypes.UUID,
     primaryKey: true,
     defaultValue: DataTypes.UUIDV4
   },
-  area: {
+  avaluo: {
     type: DataTypes.DOUBLE,
     allowNull: false
   },
-  commercial_value: {
-    type: DataTypes.DOUBLE,
+  nombre: {
+    type: DataTypes.STRING,
     allowNull: false
   },
-  water_sources: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false,
+  departamento: {
+    type: DataTypes.STRING,
     allowNull: false
   },
-  type_land: {
-    type: DataTypes.ENUM(['RURAL', 'URBANO']),
+  municipio: {
+    type: DataTypes.STRING,
     allowNull: false
   }
 }, { timestamps: false })

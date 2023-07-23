@@ -1,14 +1,14 @@
 import '../styles/globals.css'
-import PageLayount from '../layouts/PageLayount'
+import DefaultLayout from '../layouts/DefaultLayout'
+import { apolloClient } from '../utils/apollo-client'
 import { ApolloProvider } from '@apollo/client'
-import { apolloClient } from '../utls/apollo-client'
 
 function MyApp({ Component, pageProps }) {
   return (
     <ApolloProvider client={apolloClient}>
-      <PageLayount title={'GeoSat'}>
+      <DefaultLayout>
         <Component {...pageProps} />
-      </PageLayount>
+      </DefaultLayout>
     </ApolloProvider>
   )
 }

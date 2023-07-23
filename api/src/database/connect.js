@@ -9,7 +9,7 @@ export const sequelize = new Sequelize(env.DB_NAME, env.USER, env.PWD, {
 
 export const dbConnect = async () => {
   try {
-    await sequelize.sync({ force: true })
+    await sequelize.sync({ force: false })
     console.log('🆗✅🆗 Connected database 🆗✅🆗')
   } catch (err) {
     console.error(`🛑⛔ Not connection database ❗${err}❗ ⛔🛑`)
