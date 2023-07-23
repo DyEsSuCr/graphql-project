@@ -18,6 +18,7 @@ export const typeDefs = gql`
 
   extend type Query {
     builds: [Build]
+    build(id: ID!): Build
   }
 
   extend type Mutation {
@@ -37,7 +38,8 @@ export const typeDefs = gql`
 
 export const resolvers = {
   Query: {
-    builds: async () => await Contruccion.findAll()
+    builds: async () => await Contruccion.findAll(),
+    build: async (_, { id }) => await Contruccion.findByPk(id)
   },
 
   Mutation: {
