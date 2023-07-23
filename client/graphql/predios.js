@@ -15,11 +15,20 @@ export const GET_PREDIOS = gql`
 export const GET_PREDIO = gql`
 query ($id: ID!) {
   property(id: $id) {
+    avaluo
+    departamento
     id
-    name
-    appraisal
-    departament
-    town
+    municipio
+    nombre
+    terreno {
+      area
+    }
+    construccion {
+      direccion
+    }
+    propietario {
+      nombres
+    }
   }
 }
 `
