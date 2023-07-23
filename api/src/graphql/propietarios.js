@@ -40,9 +40,9 @@ export const typeDefs = gql`
       apellidos: String!
       direccion: String!
       num_celular: String!
-      correo: String!
-      NIT: String!
-      razon_social: String!
+      correo: String
+      NIT: String
+      razon_social: String
       tipo_propietario: TypeOwner!
       tipo_documento: TypeDocument!
     ): Owner

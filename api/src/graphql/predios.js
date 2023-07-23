@@ -1,5 +1,5 @@
 import { gql } from 'graphql-tag'
-import { Predio, Contruccion } from '../models/index.js'
+import { Predio, Contruccion, Terreno } from '../models/index.js'
 
 export const typeDefs = gql`
   type Property {
@@ -9,6 +9,7 @@ export const typeDefs = gql`
     departamento: String
     municipio: String
     construccion: [Build]
+    terreno: Land
   }
 
   extend type Query {
@@ -44,6 +45,7 @@ export const resolvers = {
   },
 
   Property: {
-    construccion: async ({ id }) => await Contruccion.findAll({ where: { predioId: id } })
+    construccion: async ({ id }) => await Contruccion.findAll({ where: { predioId: id } }),
+    terreno: async ({ id }) => await Terreno.findOne({ where: { predioId: id } })
   }
 }

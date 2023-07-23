@@ -1,13 +1,13 @@
 import { Contruccion, Predio, Propietario, Terreno } from './index.js'
 
 // 1-m
-Propietario.hasMany(Predio, {
-  foreignKey: 'propietarioId',
+Predio.hasMany(Propietario, {
+  foreignKey: 'predioId',
   sourceKey: 'id'
 })
 
-Predio.belongsTo(Propietario, {
-  foreignKey: 'propietarioId',
+Propietario.belongsTo(Predio, {
+  foreignKey: 'predioId',
   targetKey: 'id'
 })
 
@@ -22,5 +22,5 @@ Contruccion.belongsTo(Predio, {
 })
 
 // 1-1
-Terreno.hasOne(Predio)
-Predio.belongsTo(Terreno)
+Predio.hasOne(Terreno, { foreignKey: 'predioId' })
+Terreno.belongsTo(Predio, { foreignKey: 'predioId' })

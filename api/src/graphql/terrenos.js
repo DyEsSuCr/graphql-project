@@ -25,6 +25,7 @@ export const typeDefs = gql`
       precio_comercial: Float!
       cerca_fuentes: Boolean!
       tipo_terreno: TypeLand!
+      predioId: ID!
     ): Land
   }
 `
