@@ -17,6 +17,7 @@ export const typeDefs = gql`
 
   extend type Query {
     lands: [Land]
+    land(id: ID!): Land
   }
 
   extend type Mutation {
@@ -27,15 +28,26 @@ export const typeDefs = gql`
       tipo_terreno: TypeLand!
       predioId: ID!
     ): Land
+
+    removeLand(id: ID!): Land
   }
 `
 
 export const resolvers = {
   Query: {
-    lands: async () => await Terreno.findAll()
+    lands: async () => await Terreno.findAll(),
+    land: async (_, { id }) => await Terreno.findByPk(id)
   },
 
   Mutation: {
-    insertLand: async (_, args) => await Terreno.create(args)
+    insertLand: async (_, args) => await Terreno.create(args),
+
+    removeLand: async (_, { id }) => {
+      const foundLand = await Terreno.findByPk(id)
+      if (!foundLand) throw new Error('Terreno no encontrado')
+
+      foundLand.destroy()
+      return foundLand
+    }
   }
 }
