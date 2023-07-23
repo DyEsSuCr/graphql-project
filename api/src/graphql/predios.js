@@ -60,6 +60,8 @@ export const resolvers = {
     removeProperty: async (_, { id }) => {
       const foundProperty = await Predio.findByPk(id)
       if (!foundProperty) throw new Error('Predio no encontrado')
+
+      foundProperty.destroy()
       return foundProperty
     }
   },

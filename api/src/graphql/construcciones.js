@@ -28,6 +28,8 @@ export const typeDefs = gql`
       tipo_construccion: TypeBuild!
       predioId: ID!
     ): Build
+
+    removeBuild(id: ID!): Build
   }
 `
 
@@ -37,6 +39,14 @@ export const resolvers = {
   },
 
   Mutation: {
-    insertBuild: async (_, args) => await Contruccion.create(args)
+    insertBuild: async (_, args) => await Contruccion.create(args),
+
+    removeBuild: async (_, { id }) => {
+      const foundBuild = await Contruccion.findByPk(id)
+      if (!foundBuild) throw new Error('Predio no encontrado')
+
+      foundBuild.destroy()
+      return foundBuild
+    }
   }
 }
