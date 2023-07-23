@@ -27,6 +27,13 @@ export const typeDefs = gql`
     ): Property
 
     removeProperty(id: ID!): Property
+
+    updateProperty(
+      id: ID!
+      nombre: String
+      departamento: String
+      municipio: String
+    ): Property
   }
 `
 
@@ -38,6 +45,18 @@ export const resolvers = {
 
   Mutation: {
     insertProperty: async (_, args) => await Predio.create(args),
+
+    updateProperty: async (_, { id, nombre, departamento, municipio }) => {
+      const foundProperty = await Predio.findByPk(id)
+      if (!foundProperty) throw new Error('Predio no encontrado')
+
+      if (nombre) foundProperty.nombre = nombre
+      if (departamento) foundProperty.departamento = departamento
+      if (municipio) foundProperty.municipio = municipio
+
+      return await foundProperty.save()
+    },
+
     removeProperty: async (_, { id }) => {
       const foundProperty = await Predio.findByPk(id)
       if (!foundProperty) throw new Error('Predio no encontrado')
