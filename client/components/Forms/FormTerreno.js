@@ -69,67 +69,34 @@ export default function FormTerreno({ setToggle, predioId, updateData }) {
   const terrenoFailed = (err) => console.log(err)
 
   return (
-    <>
-      {
-        updateData
-          ? (
-            <Form form={form} name='formulario' onFinish={updateSuccess} onFinishFailed={terrenoFailed} initialValues={{
-              area: updateData.land.area,
-              precio_comercial: updateData.land.precio_comercial,
-              tipo_terreno: updateData.land.tipo_terreno,
-              cerca_fuentes: updateData.land.cerca_fuentes,
-            }}>
-              <Item label='Area' name='area' rules={[{ required: true, message: 'Campo requerido' }]}>
-                <Input type='number' />
-              </Item>
+    <Form form={form} name='formulario' onFinish={(data) => updateData ? updateSuccess(data) : createSuccess(data)} onFinishFailed={terrenoFailed} initialValues={{
+      area: updateData?.land.area || '',
+      precio_comercial: updateData?.land.precio_comercial || '',
+      tipo_terreno: updateData?.land.tipo_terreno || '',
+      cerca_fuentes: updateData?.land.cerca_fuentes || '',
+    }}>
+      <Item label='Area' name='area' rules={[{ required: true, message: 'Campo requerido' }]}>
+        <Input type='number' />
+      </Item>
 
-              <Item label='Precio comercial' name='precio_comercial' rules={[{ required: true, message: 'Campo requerido' }]}>
-                <Input type='number' />
-              </Item>
+      <Item label='Precio comercial' name='precio_comercial' rules={[{ required: true, message: 'Campo requerido' }]}>
+        <Input type='number' />
+      </Item>
 
-              <Item label='Tipo de terreno' name='tipo_terreno'>
-                <Select>
-                  <Option value='RURAL'>Rural</Option>
-                  <Option value='URBANO'>Urbano</Option>
-                </Select>
-              </Item>
+      <Item label='Tipo de terreno' name='tipo_terreno'>
+        <Select>
+          <Option value='RURAL'>Rural</Option>
+          <Option value='URBANO'>Urbano</Option>
+        </Select>
+      </Item>
 
-              <Item name='cerca_fuentes' valuePropName='checked'>
-                <Checkbox>Cerca de fuentes?</Checkbox>
-              </Item>
+      <Item name='cerca_fuentes' valuePropName='checked'>
+        <Checkbox>Cerca de fuentes?</Checkbox>
+      </Item>
 
-              <Item>
-                <Button type='primary' htmlType='submit' disabled={loading}>Crear</Button>
-              </Item>
-            </Form>
-          )
-          : (
-            <Form form={form} name='formulario' onFinish={createSuccess} onFinishFailed={terrenoFailed} initialValues={{ cerca_fuentes: false }}>
-              <Item label='Area' name='area' rules={[{ required: true, message: 'Campo requerido' }]}>
-                <Input type='number' />
-              </Item>
-
-              <Item label='Precio comercial' name='precio_comercial' rules={[{ required: true, message: 'Campo requerido' }]}>
-                <Input type='number' />
-              </Item>
-
-              <Item label='Tipo de terreno' name='tipo_terreno'>
-                <Select>
-                  <Option value='RURAL'>Rural</Option>
-                  <Option value='URBANO'>Urbano</Option>
-                </Select>
-              </Item>
-
-              <Item name='cerca_fuentes' valuePropName='checked'>
-                <Checkbox>Cerca de fuentes?</Checkbox>
-              </Item>
-
-              <Item>
-                <Button type='primary' htmlType='submit' disabled={loading}>Crear</Button>
-              </Item>
-            </Form>
-          )
-      }
-    </>
+      <Item>
+        <Button type='primary' htmlType='submit' disabled={loading}>Crear</Button>
+      </Item>
+    </Form>
   )
 }
