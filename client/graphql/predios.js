@@ -89,3 +89,14 @@ export const ADD_PREDIO = gql`
     }
   }
 `
+
+export const REMOVE_PREDIO = gql`
+  mutation($id: ID!) {
+    removeProperty(id: $id) {
+      id
+      avaluo
+      departamento
+      nombre
+    }
+  }
+`

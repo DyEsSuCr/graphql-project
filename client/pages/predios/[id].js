@@ -1,21 +1,35 @@
-import { GET_PREDIO } from '../../graphql/predios'
+import { GET_PREDIO, REMOVE_PREDIO, GET_PREDIOS } from '../../graphql/predios'
 
 import ListTerrenos from '../../components/Lists/ListTerrenos'
 import ListConstrucciones from '../../components/Lists/ListConstrucciones'
 import ListPropietarios from '../../components/Lists/ListPropietarios'
 
 import { useRouter } from 'next/router'
-import Link from 'next/link'
-import { useQuery } from '@apollo/client'
+import { useQuery, useMutation } from '@apollo/client'
 import { Button } from 'antd'
+import Link from 'next/link'
 
 export default function Predio() {
-  const { query } = useRouter()
+  const { query, push } = useRouter()
   const { loading, error, data } = useQuery(GET_PREDIO, {
     variables: {
       id: query.id
     }
   })
+
+  const [removePredio] = useMutation(REMOVE_PREDIO, {
+    refetchQueries: [
+      {
+        query: GET_PREDIOS
+      },
+      'getPredios'
+    ]
+  })
+
+  const removeOnePredio = (id) => {
+    removePredio({ variables: { id } })
+    push('/')
+  }
 
   if (loading) return <h3>Cargando...</h3>
   if (error) return <h3>Oops hubo un error 😒</h3>
@@ -27,7 +41,7 @@ export default function Predio() {
         <h3>Nombre predio: {data.property.nombre}</h3>
         <div>
           <Button type='primary'>Editar</Button>
-          <Button danger>Eliminar</Button>
+          <Button danger onClick={() => removeOnePredio(query.id)}>Eliminar</Button>
         </div>
       </div>
       <span>Avaluo: ${data.property.avaluo}</span>
