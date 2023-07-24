@@ -8,7 +8,7 @@ export const Contruccion = sequelize.define('Contruccion', {
     defaultValue: DataTypes.UUIDV4
   },
   pisos: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     allowNull: false
   },
   area: {
