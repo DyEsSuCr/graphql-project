@@ -1,4 +1,5 @@
-import ModalConstruccion from '../ModalConstruccion'
+import ModalForm from '../ModalForm'
+import FormConstruccion from '../Forms/FormConstruccion'
 
 import { useState } from 'react'
 import { Button } from 'antd'
@@ -39,7 +40,9 @@ export default function ListContrucciones({ data, predioId }) {
           )
       }
 
-      <ModalConstruccion title='Crear Construccion' toggle={toggle} setToggle={setToggle} predioId={predioId} />
+      <ModalForm title='Crear Construccion' toggle={toggle} setToggle={setToggle} predioId={predioId} >
+        <FormConstruccion setToggle={setToggle} predioId={predioId} />
+      </ModalForm>
     </div>
   )
 }

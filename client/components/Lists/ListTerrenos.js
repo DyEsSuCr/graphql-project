@@ -1,7 +1,8 @@
+import ModalForm from '../ModalForm'
+import FormTerreno from '../Forms/FormTerreno'
+
 import { Button } from 'antd'
 import { useState } from 'react'
-
-import ModalTerreno from '../ModalTerreno'
 
 export default function ListTerrenos({ data, predioId }) {
   const [toggle, setToggle] = useState(false)
@@ -30,7 +31,9 @@ export default function ListTerrenos({ data, predioId }) {
           )
       }
 
-      <ModalTerreno title='Crear Terreno' toggle={toggle} setToggle={setToggle} predioId={predioId} />
+      <ModalForm title='Crear Terreno' toggle={toggle} setToggle={setToggle} predioId={predioId} >
+        <FormTerreno setToggle={setToggle} predioId={predioId} />
+      </ModalForm>
     </div>
   )
 }
