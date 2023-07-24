@@ -1,4 +1,4 @@
-import { ADD_TERRENO, GET_TERRENO } from '../../graphql/terrenos'
+import { ADD_TERRENO } from '../../graphql/terrenos'
 import { GET_PREDIO_TERRENO } from '../../graphql/predios'
 
 import { Form, Input, Button, Checkbox, Select } from 'antd'

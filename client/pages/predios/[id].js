@@ -5,7 +5,9 @@ import ListConstrucciones from '../../components/Lists/ListConstrucciones'
 import ListPropietarios from '../../components/Lists/ListPropietarios'
 
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 import { useQuery } from '@apollo/client'
+import { Button } from 'antd'
 
 export default function Predio() {
   const { query } = useRouter()
@@ -20,7 +22,14 @@ export default function Predio() {
 
   return (
     <div style={{ display: 'flex', gap: '2rem', flexDirection: 'column' }}>
-      <h3>Nombre predio: {data.property.nombre}</h3>
+      <div className='predioHeader'>
+        <Link href={'/'} style={{ fontSize: '28px', cursor: 'pointer' }}>🔙</Link>
+        <h3>Nombre predio: {data.property.nombre}</h3>
+        <div>
+          <Button type='primary'>Editar</Button>
+          <Button danger>Eliminar</Button>
+        </div>
+      </div>
       <span>Avaluo: ${data.property.avaluo}</span>
       <span>Departamento: {data.property.departamento}</span>
       <span>Municipio: {data.property.municipio}</span>

@@ -45,7 +45,7 @@ export default function TablePredio() {
     <div>
       <div className='prediosRegistrado'>
         <h1>Predios registrados</h1>
-        <Button onClick={() => setToggle(true)}>Crear predio</Button>
+        <Button type='primary' onClick={() => setToggle(true)}>Crear predio</Button>
       </div>
 
       <Table
