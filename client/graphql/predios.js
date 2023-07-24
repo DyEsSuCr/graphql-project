@@ -65,6 +65,20 @@ export const GET_PREDIO_TERRENO = gql`
   }
 `
 
+export const GET_PREDIO_CONSTRUNCCIONES = gql`
+  query ($id: ID!) {
+    property(id: $id) {
+      construccion {
+        id
+        area
+        pisos
+        direccion
+        tipo_construccion
+      }
+    }
+  }
+`
+
 export const ADD_PREDIO = gql`
   mutation($avaluo: Float!, $nombre: String!, $departamento: String!, $municipio: String!) {
     insertProperty(avaluo: $avaluo, nombre: $nombre, departamento: $departamento, municipio: $municipio) {

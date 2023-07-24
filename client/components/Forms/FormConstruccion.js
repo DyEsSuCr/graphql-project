@@ -1,29 +1,35 @@
-import { ADD_PREDIO, GET_PREDIOS } from '../../graphql/predios'
+import { ADD_CONSTRUCCION } from '../../graphql/construcciones'
+import { GET_PREDIO_CONSTRUNCCIONES } from '../../graphql/predios'
 
-import { Form, Input, Button } from 'antd'
+import { Form, Input, Button, Select } from 'antd'
 import { useMutation } from '@apollo/client'
 
-export default function FormConstruccion({ setToggle }) {
+export default function FormConstruccion({ setToggle, predioId }) {
 
   const { Item } = Form
   const [form] = Form.useForm()
+  const { Option } = Select
 
-  const [insertPredio, { loading }] = useMutation(ADD_PREDIO, {
+  const [insertConstruccion, { loading }] = useMutation(ADD_CONSTRUCCION, {
     refetchQueries: [
       {
-        query: GET_PREDIOS
+        query: GET_PREDIO_CONSTRUNCCIONES,
+        variables: {
+          id: predioId
+        }
       },
-      'getPredios'
+      'getPredioConstrucciones'
     ]
   })
 
   const predioSuccess = (data) => {
-    insertPredio({
+    insertConstruccion({
       variables: {
-        nombre: data.nombre,
-        avaluo: parseFloat(data.avaluo),
-        municipio: data.municipio,
-        departamento: data.departamento
+        pisos: parseInt(data.pisos),
+        area: parseFloat(data.area),
+        direccion: data.direccion,
+        tipo_construccion: data.tipo_construccion,
+        predioId
       }
     })
 
@@ -35,20 +41,24 @@ export default function FormConstruccion({ setToggle }) {
 
   return (
     <Form form={form} name='formulario' onFinish={predioSuccess} onFinishFailed={predioFailed}>
-      <Item label='Nombre' name='nombre' rules={[{ required: true, message: 'Campo requerido' }]}>
-        <Input type='text' />
-      </Item>
-
-      <Item label='Avaluo' name='avaluo' rules={[{ required: true, message: 'Campo requerido' }]}>
+      <Item label='Pisos' name='pisos' rules={[{ required: true, message: 'Campo requerido' }]}>
         <Input type='number' />
       </Item>
 
-      <Item label='Municipio' name='municipio' rules={[{ required: true, message: 'Campo requerido' }]}>
+      <Item label='Area' name='area' rules={[{ required: true, message: 'Campo requerido' }]}>
+        <Input type='number' />
+      </Item>
+
+      <Item label='Direccion' name='direccion' rules={[{ required: true, message: 'Campo requerido' }]}>
         <Input type='text' />
       </Item>
 
-      <Item label='Departamento' name='departamento' rules={[{ required: true, message: 'Campo requerido' }]}>
-        <Input type='text' />
+      <Item label='Tipo de construccion' name='tipo_construccion' rules={[{ required: true, message: 'Campo requerido' }]}>
+        <Select>
+          <Option value='COMERCIAL'>Comercial</Option>
+          <Option value='INDUSTRIAL'>Industrial</Option>
+          <Option value='RESIDENCIAL'>Residencial</Option>
+        </Select>
       </Item>
 
       <Item>

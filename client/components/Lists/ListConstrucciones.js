@@ -1,6 +1,11 @@
+import ModalConstruccion from '../ModalConstruccion'
+
+import { useState } from 'react'
 import { Button } from 'antd'
 
-export default function ListContrucciones({ data }) {
+export default function ListContrucciones({ data, predioId }) {
+  const [toggle, setToggle] = useState(false)
+
   return (
     <div style={{ border: "1px solid #fff" }}>
       {
@@ -8,7 +13,7 @@ export default function ListContrucciones({ data }) {
           ? (
             <div>
               <h2>No tiene Construcciones</h2>
-              <button>Registrar construccion</button>
+              <Button type='primary' onClick={() => setToggle(true)}>Crear construccion</Button>
             </div>
           )
 
@@ -16,7 +21,7 @@ export default function ListContrucciones({ data }) {
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <h2>Construcciones registradas</h2>
-                <Button type='primary'>Crear construccion</Button>
+                <Button type='primary' onClick={() => setToggle(true)}>Crear construccion</Button>
               </div>
               {
                 data.property.construccion.map((build, i) => (
@@ -33,6 +38,8 @@ export default function ListContrucciones({ data }) {
             </div>
           )
       }
+
+      <ModalConstruccion title='Crear Construccion' toggle={toggle} setToggle={setToggle} predioId={predioId} />
     </div>
   )
 }
