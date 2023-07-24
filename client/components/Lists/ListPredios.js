@@ -31,7 +31,7 @@ const colums = [
   {
     title: 'Acciones',
     key: 'acciones',
-    render: ({ id }) => <Link href={`predios/${id}`} className='moreInfo'>Mas informacion</Link>
+    render: ({ id }) => <Link href={`predios/${id}`} className='moreInfo'>Ver</Link>
   }
 ]
 

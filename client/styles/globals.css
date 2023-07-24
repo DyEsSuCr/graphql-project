@@ -17,15 +17,10 @@ a {
   box-sizing: border-box;
 }
 
-.addPredio {
-  background-color: #20dac8;
-  color: #27272a;
-  padding: .4rem;
-  border-radius: .5rem;
-}
-
 .moreInfo {
-  background-color: #20dac8;
+  background-color: #4096ff;
+  padding: .5rem 2rem;
+  border-radius: .5rem;
 }
 
 .prediosRegistrado {
