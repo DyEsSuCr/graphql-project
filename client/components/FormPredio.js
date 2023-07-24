@@ -7,19 +7,19 @@ export default function ModalPredio() {
 
   return (
     <Form name='formulario' onFinish={predioSuccess} onFinishFailed={predioFailed}>
-      <Item label='Nombre' name='nombre' rules={[{required: true, message: 'Campo requerido'}]}>
+      <Item label='Nombre' name='nombre' rules={[{ required: true, message: 'Campo requerido' }]}>
         <Input type='text' />
       </Item>
 
-      <Item label='Avaluo' name='avaluo' rules={[{required: true, message: 'Campo requerido'}]}>
+      <Item label='Avaluo' name='avaluo' rules={[{ required: true, message: 'Campo requerido' }]}>
         <Input type='number' />
       </Item>
-      
-      <Item label='Municipio' name='municipio' rules={[{required: true, message: 'Campo requerido'}]}>
+
+      <Item label='Municipio' name='municipio' rules={[{ required: true, message: 'Campo requerido' }]}>
         <Input type='text' />
       </Item>
 
-      <Item label='Departamento' name='departamento' rules={[{required: true, message: 'Campo requerido'}]}>
+      <Item label='Departamento' name='departamento' rules={[{ required: true, message: 'Campo requerido' }]}>
         <Input type='text' />
       </Item>
 

@@ -30,16 +30,16 @@ const colums = [
   {
     title: 'Acciones',
     key: 'acciones',
-    render: ({id}) => <Link href={`predios/${id}`} className='moreInfo'>Mas informacion</Link>
+    render: ({ id }) => <Link href={`predios/${id}`} className='moreInfo'>Mas informacion</Link>
   }
 ]
 
 export default function TablePredio() {
-  const { loading, error, data } =  useQuery(GET_PREDIOS)
+  const { loading, error, data } = useQuery(GET_PREDIOS)
   const [toggle, setToggle] = useState(false)
 
-  if(loading) return <h3>Cargando...</h3>
-  if(error) return <h3>Oops hubo un error 😒</h3>
+  if (loading) return <h3>Cargando...</h3>
+  if (error) return <h3>Oops hubo un error 😒</h3>
 
   return (
     <div>
@@ -47,7 +47,7 @@ export default function TablePredio() {
         <h1>Predios registrados</h1>
         <Button onClick={() => setToggle(true)}>Crear predio</Button>
       </div>
-      
+
       <Table
         columns={colums}
         dataSource={data.propertys}
@@ -55,7 +55,7 @@ export default function TablePredio() {
         loading={loading}
       />
 
-      <ModalPredio toggle={toggle} setToggle={setToggle}/>
+      <ModalPredio toggle={toggle} setToggle={setToggle} />
     </div>
   )
 }
