@@ -45,7 +45,7 @@ export default function ListTerrenos({ data, predioId }) {
               <p>precio comercial: {data.property.terreno.precio_comercial}</p>
               <p>area: {data.property.terreno.area}</p>
               <p>tipo_terreno: {data.property.terreno.tipo_terreno}</p>
-              <p>cerca_fuentes: {!data.property.terreno.cerca_fuentes ? 'si' : 'no'}</p>
+              <p>cerca_fuentes: {data.property.terreno.cerca_fuentes ? 'si' : 'no'}</p>
               <Button type='primary' onClick={() => setToggle(true)}>Editar</Button>
               <Button danger onClick={() => removeTerreno({ variables: { id: data.property.terreno.id } })}>Eliminar</Button>
             </div>

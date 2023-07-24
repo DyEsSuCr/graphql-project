@@ -56,8 +56,8 @@ export const resolvers = {
 
       if (args.area) foundLand.area = args.area
       if (args.precio_comercial) foundLand.precio_comercial = args.precio_comercial
-      if (args.cerca_fuentes) foundLand.cerca_fuentes = args.cerca_fuentes
       if (args.tipo_terreno) foundLand.tipo_terreno = args.tipo_terreno
+      foundLand.cerca_fuentes = args.cerca_fuentes
 
       return await foundLand.save()
     },
