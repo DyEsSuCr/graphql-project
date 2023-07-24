@@ -35,3 +35,15 @@ export const ADD_TERRENO = gql`
     }
   }
 `
+
+export const REMOVE_TERRENO = gql`
+  mutation($id: ID!) {
+    removeLand(id: $id) {
+      area
+      cerca_fuentes
+      id
+      precio_comercial
+      tipo_terreno
+    }
+  }
+`
