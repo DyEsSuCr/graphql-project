@@ -1,15 +1,10 @@
 import { Modal } from 'antd'
+import FormPredio from './FormPredio'
 
-export default function ModalPredio({ toggle, setToggle }) {
-  
+export default function ModalPredio({ toggle, setToggle }) {  
   return (
-    <Modal
-      open={toggle}
-      title='Crear predio'
-      onCancel={() => setToggle(false)}
-      onOk={() => console.log('ok')}
-    >
-      <p>Aqui va el form</p>
+    <Modal open={toggle} title='Crear predio' onCancel={() => setToggle(false)}>
+      <FormPredio />
     </Modal>
   )
 }
