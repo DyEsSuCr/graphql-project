@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client'
 
 export const GET_TERRENO = gql`
-  query ($landId: ID!) {
-    land(id: $landId) {
+  query ($id: ID!) {
+    land(id: $id) {
       id
       area
       cerca_fuentes
@@ -34,6 +34,18 @@ export const ADD_TERRENO = gql`
       tipo_terreno
     }
   }
+`
+
+export const UPDATE_TERRENO = gql`
+mutation($id: ID!, $area: Float, $cerca_fuentes: Boolean, $precio_comercial: Float, $tipo_terreno: TypeLand) {
+  updateLand(id: $id, area: $area, cerca_fuentes: $cerca_fuentes, precio_comercial: $precio_comercial, tipo_terreno: $tipo_terreno) {
+    area
+    cerca_fuentes
+    id
+    precio_comercial
+    tipo_terreno
+  }
+}
 `
 
 export const REMOVE_TERRENO = gql`
