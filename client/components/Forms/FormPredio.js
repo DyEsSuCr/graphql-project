@@ -1,4 +1,4 @@
-import { ADD_PREDIO, GET_PREDIOS } from '../graphql/predios'
+import { ADD_PREDIO, GET_PREDIOS } from '../../graphql/predios'
 
 import { Form, Input, Button } from 'antd'
 import { useMutation } from '@apollo/client'

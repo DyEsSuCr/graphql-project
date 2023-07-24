@@ -1,5 +1,5 @@
 import { Modal } from 'antd'
-import FormPredio from './FormPredio'
+import FormPredio from './Forms/FormPredio'
 
 export default function ModalPredio({ toggle, setToggle }) {
   return (
