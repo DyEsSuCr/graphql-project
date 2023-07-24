@@ -23,3 +23,15 @@ export const ADD_CONSTRUCCION = gql`
     }
   }
 `
+
+export const REMOVE_CONSTRUNCCION = gql`
+ mutation($id: ID!) {
+    removeBuild(id: $id) {
+      id
+      area
+      pisos
+      direccion
+      tipo_construccion
+    }
+  }
+`
