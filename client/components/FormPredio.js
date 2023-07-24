@@ -1,12 +1,40 @@
-import { Form, Input, Button } from 'antd'
+import { ADD_PREDIO, GET_PREDIOS } from '../graphql/predios'
 
-export default function ModalPredio() {
+import { Form, Input, Button } from 'antd'
+import { useMutation } from '@apollo/client'
+
+export default function ModalPredio({ setToggle }) {
+
   const { Item } = Form
-  const predioSuccess = (data) => console.log(data)
+  const [form] = Form.useForm()
+
+  const [insertPredio, { loading }] = useMutation(ADD_PREDIO, {
+    refetchQueries: [
+      {
+        query: GET_PREDIOS
+      },
+      'getPredios'
+    ]
+  })
+
+  const predioSuccess = (data) => {
+    insertPredio({
+      variables: {
+        nombre: data.nombre,
+        avaluo: parseFloat(data.avaluo),
+        municipio: data.municipio,
+        departamento: data.departamento
+      }
+    })
+
+    setToggle(false)
+    form.resetFields()
+  }
+
   const predioFailed = (err) => console.log(err)
 
   return (
-    <Form name='formulario' onFinish={predioSuccess} onFinishFailed={predioFailed}>
+    <Form form={form} name='formulario' onFinish={predioSuccess} onFinishFailed={predioFailed}>
       <Item label='Nombre' name='nombre' rules={[{ required: true, message: 'Campo requerido' }]}>
         <Input type='text' />
       </Item>
@@ -24,7 +52,7 @@ export default function ModalPredio() {
       </Item>
 
       <Item>
-        <Button type='primary' htmlType='submit'>Crear</Button>
+        <Button type='primary' htmlType='submit' disabled={loading}>Crear</Button>
       </Item>
     </Form>
   )
