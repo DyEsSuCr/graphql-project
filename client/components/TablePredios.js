@@ -1,7 +1,9 @@
 import { GET_PREDIOS } from '../graphql/predios'
+import ModalPredio from '../components/ModalPredio'
 
 import { useQuery } from '@apollo/client'
-import { Table } from 'antd'
+import { Table, Button } from 'antd'
+import { useState } from 'react'
 import Link from 'next/link'
 
 const colums = [
@@ -34,6 +36,7 @@ const colums = [
 
 export default function TablePredio() {
   const { loading, error, data } =  useQuery(GET_PREDIOS)
+  const [toggle, setToggle] = useState(false)
 
   if(loading) return <h3>Cargando...</h3>
   if(error) return <h3>Oops hubo un error 😒</h3>
@@ -42,14 +45,17 @@ export default function TablePredio() {
     <div>
       <div className='prediosRegistrado'>
         <h1>Predios registrados</h1>
-        <Link href='/propertys/form' className='addPredio'>Crear predio</Link>
+        <Button onClick={() => setToggle(true)}>Crear predio</Button>
       </div>
+      
       <Table
         columns={colums}
         dataSource={data.propertys}
         rowKey={(property) => property.id}
         loading={loading}
       />
+
+      <ModalPredio toggle={toggle} setToggle={setToggle}/>
     </div>
   )
 }
