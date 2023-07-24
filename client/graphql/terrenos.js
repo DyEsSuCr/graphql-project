@@ -15,16 +15,16 @@ export const GET_TERRENO = gql`
 export const ADD_TERRENO = gql`
   mutation(
     $area: Float!,
-    $precioComercial: Float!,
-    $cercaFuentes: Boolean!,
-    $tipoTerreno: TypeLand!,
+    $precio_comercial: Float!,
+    $cerca_fuentes: Boolean!,
+    $tipo_terreno: TypeLand!,
     $predioId: ID!
   ) {
     insertLand(
       area: $area,
-      precio_comercial: $precioComercial,
-      cerca_fuentes: $cercaFuentes,
-      tipo_terreno: $tipoTerreno,
+      precio_comercial: $precio_comercial,
+      cerca_fuentes: $cerca_fuentes,
+      tipo_terreno: $tipo_terreno,
       predioId: $predioId
     ) {
       id

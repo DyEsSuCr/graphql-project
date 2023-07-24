@@ -1,4 +1,11 @@
-export default function ListTerrenos({ data }) {
+import { Button } from 'antd'
+import { useState } from 'react'
+
+import ModalTerreno from '../ModalTerreno'
+
+export default function ListTerrenos({ data, predioId }) {
+  const [toggle, setToggle] = useState(false)
+
   return (
     <div style={{ border: "1px solid #fff" }}>
       {
@@ -6,7 +13,7 @@ export default function ListTerrenos({ data }) {
           ? (
             <div>
               <h2>No tiene terreno</h2>
-              <button>Registrar terreno</button>
+              <Button type='primary' onClick={() => setToggle(true)}>Registrar terreno</Button>
             </div>
           )
 
@@ -17,9 +24,13 @@ export default function ListTerrenos({ data }) {
               <p>area: {data.property.terreno.area}</p>
               <p>tipo_terreno: {data.property.terreno.tipo_terreno}</p>
               <p>cerca_fuentes: {data.property.terreno.cerca_fuentes ? 'si' : 'no'}</p>
+              <Button type='primary'>Editar</Button>
+              <Button danger>Eliminar</Button>
             </div>
           )
       }
+
+      <ModalTerreno title='Crear Terreno' toggle={toggle} setToggle={setToggle} predioId={predioId} />
     </div>
   )
 }

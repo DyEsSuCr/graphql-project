@@ -1,5 +1,6 @@
 import { GET_PREDIO } from '../../graphql/predios'
-import ListTerreno from '../../components/Lists/ListTerrenos'
+
+import ListTerrenos from '../../components/Lists/ListTerrenos'
 import ListConstrucciones from '../../components/Lists/ListConstrucciones'
 import ListPropietarios from '../../components/Lists/ListPropietarios'
 
@@ -24,9 +25,9 @@ export default function Predio() {
       <span>Departamento: {data.property.departamento}</span>
       <span>Municipio: {data.property.municipio}</span>
 
-      <ListTerreno data={data} />
-      <ListConstrucciones data={data} />
-      <ListPropietarios data={data} />
+      <ListTerrenos data={data} predioId={query.id} />
+      <ListConstrucciones data={data} predioId={query.id} />
+      <ListPropietarios data={data} predioId={query.id} />
     </div>
   )
 }

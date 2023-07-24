@@ -1,29 +1,35 @@
-import { ADD_PREDIO, GET_PREDIOS } from '../../graphql/predios'
+import { ADD_TERRENO, GET_TERRENO } from '../../graphql/terrenos'
+import { GET_PREDIO_TERRENO } from '../../graphql/predios'
 
-import { Form, Input, Button } from 'antd'
+import { Form, Input, Button, Checkbox, Select } from 'antd'
 import { useMutation } from '@apollo/client'
 
-export default function ModalPredio({ setToggle }) {
+export default function FormTerreno({ setToggle, predioId }) {
 
   const { Item } = Form
   const [form] = Form.useForm()
+  const { Option } = Select
 
-  const [insertPredio, { loading }] = useMutation(ADD_PREDIO, {
+  const [insertTerreno, { loading }] = useMutation(ADD_TERRENO, {
     refetchQueries: [
       {
-        query: GET_PREDIOS
+        query: GET_PREDIO_TERRENO,
+        variables: {
+          id: predioId
+        }
       },
-      'getPredios'
+      'getPredioTerreno'
     ]
   })
 
-  const predioSuccess = (data) => {
-    insertPredio({
+  const terenoSuccess = (data) => {
+    insertTerreno({
       variables: {
-        nombre: data.nombre,
-        avaluo: parseFloat(data.avaluo),
-        municipio: data.municipio,
-        departamento: data.departamento
+        area: parseFloat(data.area),
+        cerca_fuentes: data.cerca_fuentes,
+        precio_comercial: parseFloat(data.precio_comercial),
+        tipo_terreno: data.tipo_terreno,
+        predioId
       }
     })
 
@@ -31,24 +37,29 @@ export default function ModalPredio({ setToggle }) {
     form.resetFields()
   }
 
-  const predioFailed = (err) => console.log(err)
+  const terrenoFailed = (err) => console.log(err)
 
   return (
-    <Form form={form} name='formulario' onFinish={predioSuccess} onFinishFailed={predioFailed}>
-      <Item label='Nombre' name='nombre' rules={[{ required: true, message: 'Campo requerido' }]}>
-        <Input type='text' />
-      </Item>
-
-      <Item label='Avaluo' name='avaluo' rules={[{ required: true, message: 'Campo requerido' }]}>
+    <Form form={form} name='formulario' onFinish={terenoSuccess} onFinishFailed={terrenoFailed} initialValues={{
+      cerca_fuentes: false
+    }}>
+      <Item label='Area' name='area' rules={[{ required: true, message: 'Campo requerido' }]}>
         <Input type='number' />
       </Item>
 
-      <Item label='Municipio' name='municipio' rules={[{ required: true, message: 'Campo requerido' }]}>
-        <Input type='text' />
+      <Item label='Precio comercial' name='precio_comercial' rules={[{ required: true, message: 'Campo requerido' }]}>
+        <Input type='number' />
       </Item>
 
-      <Item label='Departamento' name='departamento' rules={[{ required: true, message: 'Campo requerido' }]}>
-        <Input type='text' />
+      <Item label='Tipo de terreno' name='tipo_terreno'>
+        <Select>
+          <Option value='RURAL'>Rural</Option>
+          <Option value='URBANO'>Urbano</Option>
+        </Select>
+      </Item>
+
+      <Item name='cerca_fuentes' valuePropName='checked'>
+        <Checkbox>Cerca de fuentes?</Checkbox>
       </Item>
 
       <Item>

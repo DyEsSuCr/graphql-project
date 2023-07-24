@@ -1,10 +1,10 @@
 import { Modal } from 'antd'
-import FormTerreno from './FormTerreno'
+import FormTerreno from './Forms/FormTerreno'
 
-export default function ModalTerreno({ toggle, setToggle }) {
+export default function ModalTerreno({ title, toggle, setToggle, predioId }) {
   return (
-    <Modal open={toggle} title='Crear predio' onCancel={() => setToggle(false)}>
-      <FormTerreno setToggle={setToggle} />
+    <Modal open={toggle} title={title} onCancel={() => setToggle(false)}>
+      <FormTerreno setToggle={setToggle} predioId={predioId} />
     </Modal>
   )
 }
