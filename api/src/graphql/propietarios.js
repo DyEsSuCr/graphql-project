@@ -65,8 +65,7 @@ export const resolvers = {
       const foundOwner = await Propietario.findByPk(id)
       if (!foundOwner) throw new Error('Propietario no encontrado')
 
-      foundOwner.destroy()
-      return foundOwner
+      return await foundOwner.destroy()
     }
   }
 }

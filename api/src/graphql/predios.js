@@ -61,8 +61,10 @@ export const resolvers = {
       const foundProperty = await Predio.findByPk(id)
       if (!foundProperty) throw new Error('Predio no encontrado')
 
-      foundProperty.destroy()
-      return foundProperty
+      await Contruccion.destroy({ where: { predioId: id } })
+      await Terreno.destroy({ where: { predioId: id } })
+      await Propietario.destroy({ where: { predioId: id } })
+      return await foundProperty.destroy()
     }
   },
 
