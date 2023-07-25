@@ -31,6 +31,7 @@ export const typeDefs = gql`
       nombre: String
       departamento: String
       municipio: String
+      avaluo: Float
     ): Property
 
     removeProperty(id: ID!): Property
@@ -46,13 +47,16 @@ export const resolvers = {
   Mutation: {
     insertProperty: async (_, args) => await Predio.create(args),
 
-    updateProperty: async (_, { id, nombre, departamento, municipio }) => {
-      const foundProperty = await Predio.findByPk(id)
+    updateProperty: async (_, args) => {
+      const foundProperty = await Predio.findByPk(args.id)
       if (!foundProperty) throw new Error('Predio no encontrado')
 
-      if (nombre) foundProperty.nombre = nombre
-      if (departamento) foundProperty.departamento = departamento
-      if (municipio) foundProperty.municipio = municipio
+      console.log(args)
+
+      if (args.nombre) foundProperty.nombre = args.nombre
+      if (args.departamento) foundProperty.departamento = args.departamento
+      if (args.municipio) foundProperty.municipio = args.municipio
+      if (args.avaluo) foundProperty.avaluo = args.avaluo
 
       return await foundProperty.save()
     },

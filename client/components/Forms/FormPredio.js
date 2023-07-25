@@ -1,9 +1,9 @@
-import { ADD_PREDIO, GET_PREDIOS } from '../../graphql/predios'
+import { ADD_PREDIO, GET_PREDIOS, UPDATE_PREDIO } from '../../graphql/predios'
 
 import { Form, Input, Button } from 'antd'
 import { useMutation } from '@apollo/client'
 
-export default function FormPredio({ setToggle }) {
+export default function FormPredio({ setToggle, updateData }) {
 
   const { Item } = Form
   const [form] = Form.useForm()
@@ -17,7 +17,19 @@ export default function FormPredio({ setToggle }) {
     ]
   })
 
-  const predioSuccess = (data) => {
+  const [updatePredio] = useMutation(UPDATE_PREDIO, {
+    variables: {
+      id: updateData?.property.id
+    },
+    refetchQueries: [
+      {
+        query: GET_PREDIOS
+      },
+      'getPredios'
+    ]
+  })
+
+  const createSuccess = (data) => {
     insertPredio({
       variables: {
         nombre: data.nombre,
@@ -31,10 +43,32 @@ export default function FormPredio({ setToggle }) {
     form.resetFields()
   }
 
+  const updateSuccess = (data) => {
+    updatePredio({
+      variables: {
+        nombre: data.nombre,
+        avaluo: parseFloat(data.avaluo),
+        municipio: data.municipio,
+        departamento: data.departamento
+      }
+    })
+
+    setToggle(false)
+  }
+
   const predioFailed = (err) => console.log(err)
 
   return (
-    <Form form={form} name='formulario' onFinish={predioSuccess} onFinishFailed={predioFailed}>
+    <Form form={form}
+      name='formulario'
+      onFinish={(data) => updateData ? updateSuccess(data) : createSuccess(data)}
+      onFinishFailed={predioFailed}
+      initialValues={{
+        nombre: updateData?.property.nombre || '',
+        avaluo: updateData?.property.avaluo || '',
+        municipio: updateData?.property.municipio || '',
+        departamento: updateData?.property.departamento || ''
+      }}>
       <Item label='Nombre' name='nombre' rules={[{ required: true, message: 'Campo requerido' }]}>
         <Input type='text' />
       </Item>
