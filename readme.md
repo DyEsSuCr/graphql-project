@@ -1,3 +1,15 @@
+# Tencnologias usadas
+
+| Backend         | Frontend        |
+| --------------- | --------------- |
+| Postgresql      | NextJS          |
+| ApolloGraphql   | ApolloGraphql   |
+| Node            | AntDesign       |
+| Sequelize       |                 |
+| Express         |                 |
+
+
+# Database - MER
     +-------------------------------+
     |   Predio                      |
     +-------------------------------+
@@ -51,3 +63,26 @@
     | tipo_terreno                  | enum(rural, urbano)
     | predioID (FK)                 | 1-1
     +-------------------------------+
+
+
+# Pasos
+1. crear un archivo .env en la raiz de la carpeta api con los siguentes variables
+      - PORT=Numero Puerto
+      - DB_NAME=Nombre de la DDBB
+      - USER=Nombre de usuario de la DDBB
+      - PWD=Contraseña de la DDBB
+
+2. Crear una base de datos con el nombre ingresado en el archivo .env
+
+3. Abrir una terminal ingresar los siguentes comandos
+```
+cd api
+pnpm dev 
+```
+
+
+4. Abrir una nueva terminal ingresar los siguentes comandos
+```
+cd client
+pnpm dev 
+```
