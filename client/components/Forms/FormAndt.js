@@ -1,8 +1,6 @@
 import { Form } from 'antd'
 
-export function FormAndt ({ name, updateData, updateSuccess, createSuccess, initialValues, children }) {
-  const [form] = Form.useForm()
-
+export function FormAndt ({ form, name, updateData, updateSuccess, createSuccess, initialValues, children }) {
   return (
     <Form
       form={form}

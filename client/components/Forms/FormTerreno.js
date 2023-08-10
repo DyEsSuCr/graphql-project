@@ -67,7 +67,7 @@ export default function FormTerreno ({ setToggle, predioId, updateData }) {
 
   return (
     <FormAndt
-      name='formTerreno' updateData={updateData} updateSuccess={updateSuccess} createSuccess={createSuccess}
+      form={form} name='formTerreno' updateData={updateData} updateSuccess={updateSuccess} createSuccess={createSuccess}
       initialValues={{
         area: updateData?.land.area || '',
         precio_comercial: updateData?.land.precio_comercial || '',

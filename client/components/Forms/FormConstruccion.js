@@ -1,10 +1,10 @@
 import { ADD_CONSTRUCCION, UPDASS } from '../../graphql/construcciones'
 import { GET_PREDIO_CONSTRUNCCIONES } from '../../graphql/predios'
+import { FormAndt } from './FormAndt'
 import { ItemForm } from './ItemForm'
 
 import { Form } from 'antd'
 import { useMutation } from '@apollo/client'
-import { FormAndt } from './FormAndt'
 
 export default function FormConstruccion ({ setToggle, predioId, updateData }) {
   const [form] = Form.useForm()
@@ -67,7 +67,7 @@ export default function FormConstruccion ({ setToggle, predioId, updateData }) {
 
   return (
     <FormAndt
-      name='formBuild' updateData={updateData} updateSuccess={updateSuccess} createSuccess={createSuccess}
+      form={form} name='formBuild' updateData={updateData} updateSuccess={updateSuccess} createSuccess={createSuccess}
       initialValues={{
         pisos: updateData?.build.pisos || '',
         area: updateData?.build.area || '',

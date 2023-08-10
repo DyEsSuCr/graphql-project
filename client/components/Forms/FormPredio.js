@@ -58,7 +58,7 @@ export default function FormPredio ({ setToggle, updateData }) {
 
   return (
     <FormAndt
-      name='formPredio' updateData={updateData} updateSuccess={updateSuccess} createSuccess={createSuccess}
+      form={form} name='formPredio' updateData={updateData} updateSuccess={updateSuccess} createSuccess={createSuccess}
       initialValues={{
         nombre: updateData?.property.nombre || '',
         avaluo: updateData?.property.avaluo || '',
