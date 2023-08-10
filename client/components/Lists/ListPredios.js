@@ -39,7 +39,7 @@ export default function ListPredios () {
   const { loading, error, data } = useQuery(GET_PREDIOS)
   const [toggle, setToggle] = useState(false)
 
-  if (loading) return <h3>Cargando...</h3>
+  if (loading) return <div className='lds-dual-ring' />
   if (error) return <h3>Oops hubo un error 😒</h3>
 
   return (

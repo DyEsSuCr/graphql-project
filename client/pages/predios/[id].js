@@ -37,7 +37,7 @@ export default function Predio () {
     push('/')
   }
 
-  if (loading) return <h3>Cargando...</h3>
+  if (loading) return <div className='lds-dual-ring' />
   if (error) return <h3>Oops hubo un error 😒</h3>
 
   return (
@@ -50,7 +50,7 @@ export default function Predio () {
           <Button danger onClick={() => removeOnePredio(query.id)}>Eliminar</Button>
         </div>
       </div>
-      <span>Avaluo: ${data.property.avaluo}</span>
+      <span>Avaluo: ${data.property.avaluo}$</span>
       <span>Departamento: {data.property.departamento}</span>
       <span>Municipio: {data.property.municipio}</span>
 
