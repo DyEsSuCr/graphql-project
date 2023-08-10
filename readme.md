@@ -26,7 +26,7 @@
     |   Propietario                 |
     +-------------------------------+
     | id_propietario(PK)            |
-    | tipo_persona:                 | enum(naturares, juridicas)
+    | tipo_persona:                 | enum(naturales, juridicas)
     | numero_doc                    | enum(cc, ti, etc..)
     | nombres                       |
     | apellidos                     |
@@ -45,7 +45,7 @@
     +-------------------------------+
     | id_construccion(PK)           |
     | numero_pisos                  |
-    | area_total                    | enum(industrial, comercial, recidencial)
+    | area_total                    | enum(industrial, comercial, residencial)
     | tipo                          |
     | direccion                     |
     | predioID (FK)                 | 1-n
@@ -72,17 +72,26 @@
       - USER=Nombre de usuario de la DDBB
       - PWD=Contraseña de la DDBB
 
-2. Crear una base de datos con el nombre ingresado en el archivo .env
+2. Crear una base de datos en postgresql con el nombre ingresado en el archivo .env
 
-3. Abrir una terminal ingresar los siguentes comandos
+3. crear un archivo .env.local en la raiz de la carpeta client con la siguente variable
+      - NEXT_PUBLIC_PORT_GRAPHQL: El mismo Puerto que utilizado en graphql
+
+4. Abrir una terminal ingresar los siguentes comandos
 ```
 cd api
+pnpm i
 pnpm dev 
 ```
 
 
-4. Abrir una nueva terminal ingresar los siguentes comandos
+5. Abrir una nueva terminal ingresar los siguentes comandos
 ```
 cd client
+pnpm i
 pnpm dev 
 ```
+
+6. Abrir ApolloGraphql
+
+      ingresar a: http://localhost:(numero puerto)/graphql
