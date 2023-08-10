@@ -1,10 +1,10 @@
 import { ADD_PREDIO, GET_PREDIOS, UPDATE_PREDIO } from '../../graphql/predios'
+import { ItemForm } from './ItemForm'
 
-import { Form, Input, Button } from 'antd'
+import { Form } from 'antd'
 import { useMutation } from '@apollo/client'
 
 export default function FormPredio ({ setToggle, updateData }) {
-  const { Item } = Form
   const [form] = Form.useForm()
 
   const [insertPredio, { loading }] = useMutation(ADD_PREDIO, {
@@ -70,25 +70,11 @@ export default function FormPredio ({ setToggle, updateData }) {
         departamento: updateData?.property.departamento || ''
       }}
     >
-      <Item label='Nombre' name='nombre' rules={[{ required: true, message: 'Campo requerido' }]}>
-        <Input type='text' />
-      </Item>
-
-      <Item label='Avaluo' name='avaluo' rules={[{ required: true, message: 'Campo requerido' }]}>
-        <Input type='number' />
-      </Item>
-
-      <Item label='Municipio' name='municipio' rules={[{ required: true, message: 'Campo requerido' }]}>
-        <Input type='text' />
-      </Item>
-
-      <Item label='Departamento' name='departamento' rules={[{ required: true, message: 'Campo requerido' }]}>
-        <Input type='text' />
-      </Item>
-
-      <Item>
-        <Button type='primary' htmlType='submit' disabled={loading}>Crear</Button>
-      </Item>
+      <ItemForm typeItem='input' label='Nombre' name='nombre' typeInput='text' />
+      <ItemForm typeItem='input' label='Avaluo' name='avaluo' typeInput='number' />
+      <ItemForm typeItem='input' label='Municipio' name='municipio' typeInput='text' />
+      <ItemForm typeItem='input' label='Departamento' name='departamento' typeInput='text' />
+      <ItemForm typeItem='submit' loading={loading} />
     </Form>
   )
 }

@@ -1,13 +1,12 @@
 import { ADD_TERRENO, UPDATE_TERRENO } from '../../graphql/terrenos'
 import { GET_PREDIO_TERRENO } from '../../graphql/predios'
+import { ItemForm } from './ItemForm'
 
-import { Form, Input, Button, Checkbox, Select } from 'antd'
+import { Form } from 'antd'
 import { useMutation } from '@apollo/client'
 
 export default function FormTerreno ({ setToggle, predioId, updateData }) {
-  const { Item } = Form
   const [form] = Form.useForm()
-  const { Option } = Select
 
   const [insertTerreno, { loading }] = useMutation(ADD_TERRENO, {
     refetchQueries: [
@@ -76,28 +75,11 @@ export default function FormTerreno ({ setToggle, predioId, updateData }) {
         cerca_fuentes: updateData?.land.cerca_fuentes || ''
       }}
     >
-      <Item label='Area' name='area' rules={[{ required: true, message: 'Campo requerido' }]}>
-        <Input type='number' />
-      </Item>
-
-      <Item label='Precio comercial' name='precio_comercial' rules={[{ required: true, message: 'Campo requerido' }]}>
-        <Input type='number' />
-      </Item>
-
-      <Item label='Tipo de terreno' name='tipo_terreno'>
-        <Select>
-          <Option value='RURAL'>Rural</Option>
-          <Option value='URBANO'>Urbano</Option>
-        </Select>
-      </Item>
-
-      <Item name='cerca_fuentes' valuePropName='checked'>
-        <Checkbox>Cerca de fuentes?</Checkbox>
-      </Item>
-
-      <Item>
-        <Button type='primary' htmlType='submit' disabled={loading}>Crear</Button>
-      </Item>
+      <ItemForm typeItem='input' label='Area' name='area' typeInput='number' />
+      <ItemForm typeItem='input' label='Precio comercial' name='precio_comercial' typeInput='number' />
+      <ItemForm typeItem='select' options={['RURAL', 'URBANO']} label='Tipo de terreno' name='tipo_terreno' />
+      <ItemForm typeItem='check' />
+      <ItemForm typeItem='submit' loading={loading} />
     </Form>
   )
 }

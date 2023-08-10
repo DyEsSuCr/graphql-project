@@ -1,13 +1,12 @@
 import { ADD_CONSTRUCCION, UPDASS } from '../../graphql/construcciones'
 import { GET_PREDIO_CONSTRUNCCIONES } from '../../graphql/predios'
+import { ItemForm } from './ItemForm'
 
-import { Form, Input, Button, Select } from 'antd'
+import { Form } from 'antd'
 import { useMutation } from '@apollo/client'
 
 export default function FormConstruccion ({ setToggle, predioId, updateData }) {
-  const { Item } = Form
   const [form] = Form.useForm()
-  const { Option } = Select
 
   const [insertConstruccion, { loading }] = useMutation(ADD_CONSTRUCCION, {
     refetchQueries: [
@@ -77,29 +76,11 @@ export default function FormConstruccion ({ setToggle, predioId, updateData }) {
         tipo_construccion: updateData?.build.tipo_construccion || ''
       }}
     >
-      <Item label='Pisos' name='pisos' rules={[{ required: true, message: 'Campo requerido' }]}>
-        <Input type='number' />
-      </Item>
-
-      <Item label='Area' name='area' rules={[{ required: true, message: 'Campo requerido' }]}>
-        <Input type='number' />
-      </Item>
-
-      <Item label='Direccion' name='direccion' rules={[{ required: true, message: 'Campo requerido' }]}>
-        <Input type='text' />
-      </Item>
-
-      <Item label='Tipo de construccion' name='tipo_construccion' rules={[{ required: true, message: 'Campo requerido' }]}>
-        <Select>
-          <Option value='COMERCIAL'>Comercial</Option>
-          <Option value='INDUSTRIAL'>Industrial</Option>
-          <Option value='RESIDENCIAL'>Residencial</Option>
-        </Select>
-      </Item>
-
-      <Item>
-        <Button type='primary' htmlType='submit' disabled={loading}>Crear</Button>
-      </Item>
+      <ItemForm typeItem='input' label='Pisos' name='pisos' typeInput='number' />
+      <ItemForm typeItem='input' label='Area' name='area' typeInput='number' />
+      <ItemForm typeItem='input' label='Direccion' name='direccion' typeInput='text' />
+      <ItemForm typeItem='select' options={['COMERCIAL', 'INDUSTRIAL', 'RESIDENCIAL']} label='Tipo de construccion' name='tipo_construccion' />
+      <ItemForm typeItem='submit' loading={loading} />
     </Form>
   )
 }
