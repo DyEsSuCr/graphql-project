@@ -51,8 +51,6 @@ export const resolvers = {
       const foundProperty = await Predio.findByPk(args.id)
       if (!foundProperty) throw new Error('Predio no encontrado')
 
-      console.log(args)
-
       if (args.nombre) foundProperty.nombre = args.nombre
       if (args.departamento) foundProperty.departamento = args.departamento
       if (args.municipio) foundProperty.municipio = args.municipio

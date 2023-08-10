@@ -4,6 +4,7 @@ import { ItemForm } from './ItemForm'
 
 import { Form } from 'antd'
 import { useMutation } from '@apollo/client'
+import { FormAndt } from './FormAndt'
 
 export default function FormConstruccion ({ setToggle, predioId, updateData }) {
   const [form] = Form.useForm()
@@ -64,11 +65,9 @@ export default function FormConstruccion ({ setToggle, predioId, updateData }) {
     setToggle(false)
   }
 
-  const construccionFailed = (err) => console.log(err)
-
   return (
-    <Form
-      form={form} name='formulario' onFinish={(data) => updateData ? updateSuccess(data) : createSuccess(data)} onFinishFailed={construccionFailed}
+    <FormAndt
+      name='formBuild' updateData={updateData} updateSuccess={updateSuccess} createSuccess={createSuccess}
       initialValues={{
         pisos: updateData?.build.pisos || '',
         area: updateData?.build.area || '',
@@ -81,6 +80,6 @@ export default function FormConstruccion ({ setToggle, predioId, updateData }) {
       <ItemForm typeItem='input' label='Direccion' name='direccion' typeInput='text' />
       <ItemForm typeItem='select' options={['COMERCIAL', 'INDUSTRIAL', 'RESIDENCIAL']} label='Tipo de construccion' name='tipo_construccion' />
       <ItemForm typeItem='submit' loading={loading} />
-    </Form>
+    </FormAndt>
   )
 }

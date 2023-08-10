@@ -1,5 +1,6 @@
 import { ADD_PREDIO, GET_PREDIOS, UPDATE_PREDIO } from '../../graphql/predios'
 import { ItemForm } from './ItemForm'
+import { FormAndt } from './FormAndt'
 
 import { Form } from 'antd'
 import { useMutation } from '@apollo/client'
@@ -55,14 +56,9 @@ export default function FormPredio ({ setToggle, updateData }) {
     setToggle(false)
   }
 
-  const predioFailed = (err) => console.log(err)
-
   return (
-    <Form
-      form={form}
-      name='formulario'
-      onFinish={(data) => updateData ? updateSuccess(data) : createSuccess(data)}
-      onFinishFailed={predioFailed}
+    <FormAndt
+      name='formPredio' updateData={updateData} updateSuccess={updateSuccess} createSuccess={createSuccess}
       initialValues={{
         nombre: updateData?.property.nombre || '',
         avaluo: updateData?.property.avaluo || '',
@@ -75,6 +71,6 @@ export default function FormPredio ({ setToggle, updateData }) {
       <ItemForm typeItem='input' label='Municipio' name='municipio' typeInput='text' />
       <ItemForm typeItem='input' label='Departamento' name='departamento' typeInput='text' />
       <ItemForm typeItem='submit' loading={loading} />
-    </Form>
+    </FormAndt>
   )
 }

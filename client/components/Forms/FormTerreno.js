@@ -1,5 +1,6 @@
 import { ADD_TERRENO, UPDATE_TERRENO } from '../../graphql/terrenos'
 import { GET_PREDIO_TERRENO } from '../../graphql/predios'
+import { FormAndt } from './FormAndt'
 import { ItemForm } from './ItemForm'
 
 import { Form } from 'antd'
@@ -64,11 +65,10 @@ export default function FormTerreno ({ setToggle, predioId, updateData }) {
     setToggle(false)
   }
 
-  const terrenoFailed = (err) => console.log(err)
-
   return (
-    <Form
-      form={form} name='formulario' onFinish={(data) => updateData ? updateSuccess(data) : createSuccess(data)} onFinishFailed={terrenoFailed} initialValues={{
+    <FormAndt
+      name='formTerreno' updateData={updateData} updateSuccess={updateSuccess} createSuccess={createSuccess}
+      initialValues={{
         area: updateData?.land.area || '',
         precio_comercial: updateData?.land.precio_comercial || '',
         tipo_terreno: updateData?.land.tipo_terreno || '',
@@ -80,6 +80,6 @@ export default function FormTerreno ({ setToggle, predioId, updateData }) {
       <ItemForm typeItem='select' options={['RURAL', 'URBANO']} label='Tipo de terreno' name='tipo_terreno' />
       <ItemForm typeItem='check' />
       <ItemForm typeItem='submit' loading={loading} />
-    </Form>
+    </FormAndt>
   )
 }
