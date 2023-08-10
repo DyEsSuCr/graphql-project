@@ -4,8 +4,7 @@ import { GET_PREDIO_CONSTRUNCCIONES } from '../../graphql/predios'
 import { Form, Input, Button, Select } from 'antd'
 import { useMutation } from '@apollo/client'
 
-export default function FormConstruccion({ setToggle, predioId, updateData }) {
-
+export default function FormConstruccion ({ setToggle, predioId, updateData }) {
   const { Item } = Form
   const [form] = Form.useForm()
   const { Option } = Select
@@ -69,13 +68,15 @@ export default function FormConstruccion({ setToggle, predioId, updateData }) {
   const construccionFailed = (err) => console.log(err)
 
   return (
-    <Form form={form} name='formulario' onFinish={(data) => updateData ? updateSuccess(data) : createSuccess(data)} onFinishFailed={construccionFailed}
+    <Form
+      form={form} name='formulario' onFinish={(data) => updateData ? updateSuccess(data) : createSuccess(data)} onFinishFailed={construccionFailed}
       initialValues={{
         pisos: updateData?.build.pisos || '',
         area: updateData?.build.area || '',
         direccion: updateData?.build.direccion || '',
-        tipo_construccion: updateData?.build.tipo_construccion || '',
-      }}>
+        tipo_construccion: updateData?.build.tipo_construccion || ''
+      }}
+    >
       <Item label='Pisos' name='pisos' rules={[{ required: true, message: 'Campo requerido' }]}>
         <Input type='number' />
       </Item>

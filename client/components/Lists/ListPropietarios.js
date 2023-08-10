@@ -1,8 +1,8 @@
 import { Button } from 'antd'
 
-export default function ListPropietarios({ data }) {
+export default function ListPropietarios ({ data }) {
   return (
-    <div style={{ border: "1px solid #fff" }}>
+    <div style={{ border: '1px solid #fff' }}>
       {
         data.property.propietario <= 0
           ? (
@@ -10,7 +10,7 @@ export default function ListPropietarios({ data }) {
               <h2>No tiene Propietarios</h2>
               <button>Registrar propietario</button>
             </div>
-          )
+            )
 
           : (
             <div>
@@ -20,7 +20,7 @@ export default function ListPropietarios({ data }) {
               </div>
               {
                 data.property.propietario.map((owner, i) => (
-                  <ul key={owner.id} style={{ border: "1px solid #fff" }}>
+                  <ul key={owner.id} style={{ border: '1px solid #fff' }}>
                     <li>{owner.nombres}</li>
                     <li>{owner.apellidos}</li>
                     <li>{owner.tipo_documento}</li>
@@ -35,7 +35,7 @@ export default function ListPropietarios({ data }) {
                 ))
               }
             </div>
-          )
+            )
       }
     </div>
   )

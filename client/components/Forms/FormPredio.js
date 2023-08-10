@@ -3,8 +3,7 @@ import { ADD_PREDIO, GET_PREDIOS, UPDATE_PREDIO } from '../../graphql/predios'
 import { Form, Input, Button } from 'antd'
 import { useMutation } from '@apollo/client'
 
-export default function FormPredio({ setToggle, updateData }) {
-
+export default function FormPredio ({ setToggle, updateData }) {
   const { Item } = Form
   const [form] = Form.useForm()
 
@@ -59,7 +58,8 @@ export default function FormPredio({ setToggle, updateData }) {
   const predioFailed = (err) => console.log(err)
 
   return (
-    <Form form={form}
+    <Form
+      form={form}
       name='formulario'
       onFinish={(data) => updateData ? updateSuccess(data) : createSuccess(data)}
       onFinishFailed={predioFailed}
@@ -68,7 +68,8 @@ export default function FormPredio({ setToggle, updateData }) {
         avaluo: updateData?.property.avaluo || '',
         municipio: updateData?.property.municipio || '',
         departamento: updateData?.property.departamento || ''
-      }}>
+      }}
+    >
       <Item label='Nombre' name='nombre' rules={[{ required: true, message: 'Campo requerido' }]}>
         <Input type='text' />
       </Item>

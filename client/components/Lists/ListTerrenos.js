@@ -7,7 +7,7 @@ import { Button } from 'antd'
 import { useState } from 'react'
 import { useMutation, useQuery } from '@apollo/client'
 
-export default function ListTerrenos({ data, predioId }) {
+export default function ListTerrenos ({ data, predioId }) {
   const [toggle, setToggle] = useState(false)
   const [removeTerreno] = useMutation(REMOVE_TERRENO, {
     refetchQueries: [
@@ -29,7 +29,7 @@ export default function ListTerrenos({ data, predioId }) {
   })
 
   return (
-    <div style={{ border: "1px solid #fff" }}>
+    <div style={{ border: '1px solid #fff' }}>
       {
         !data.property.terreno
           ? (
@@ -37,7 +37,7 @@ export default function ListTerrenos({ data, predioId }) {
               <h2>No tiene terreno</h2>
               <Button type='primary' onClick={() => setToggle(true)}>Registrar terreno</Button>
             </div>
-          )
+            )
 
           : (
             <div>
@@ -49,10 +49,10 @@ export default function ListTerrenos({ data, predioId }) {
               <Button type='primary' onClick={() => setToggle(true)}>Editar</Button>
               <Button danger onClick={() => removeTerreno({ variables: { id: data.property.terreno.id } })}>Eliminar</Button>
             </div>
-          )
+            )
       }
 
-      <ModalForm title='Crear Terreno' toggle={toggle} setToggle={setToggle} predioId={predioId} >
+      <ModalForm title='Crear Terreno' toggle={toggle} setToggle={setToggle} predioId={predioId}>
         <FormTerreno setToggle={setToggle} predioId={predioId} updateData={terrenoData} />
       </ModalForm>
     </div>

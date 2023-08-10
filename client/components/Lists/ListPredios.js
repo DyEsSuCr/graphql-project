@@ -35,7 +35,7 @@ const colums = [
   }
 ]
 
-export default function ListPredios() {
+export default function ListPredios () {
   const { loading, error, data } = useQuery(GET_PREDIOS)
   const [toggle, setToggle] = useState(false)
 
@@ -56,7 +56,7 @@ export default function ListPredios() {
         loading={loading}
       />
 
-      <ModalForm title='Crear predio' toggle={toggle} setToggle={setToggle} >
+      <ModalForm title='Crear predio' toggle={toggle} setToggle={setToggle}>
         <FormPredio setToggle={setToggle} />
       </ModalForm>
     </div>

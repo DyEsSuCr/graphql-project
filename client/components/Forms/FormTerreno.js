@@ -4,8 +4,7 @@ import { GET_PREDIO_TERRENO } from '../../graphql/predios'
 import { Form, Input, Button, Checkbox, Select } from 'antd'
 import { useMutation } from '@apollo/client'
 
-export default function FormTerreno({ setToggle, predioId, updateData }) {
-
+export default function FormTerreno ({ setToggle, predioId, updateData }) {
   const { Item } = Form
   const [form] = Form.useForm()
   const { Option } = Select
@@ -69,12 +68,14 @@ export default function FormTerreno({ setToggle, predioId, updateData }) {
   const terrenoFailed = (err) => console.log(err)
 
   return (
-    <Form form={form} name='formulario' onFinish={(data) => updateData ? updateSuccess(data) : createSuccess(data)} onFinishFailed={terrenoFailed} initialValues={{
-      area: updateData?.land.area || '',
-      precio_comercial: updateData?.land.precio_comercial || '',
-      tipo_terreno: updateData?.land.tipo_terreno || '',
-      cerca_fuentes: updateData?.land.cerca_fuentes || '',
-    }}>
+    <Form
+      form={form} name='formulario' onFinish={(data) => updateData ? updateSuccess(data) : createSuccess(data)} onFinishFailed={terrenoFailed} initialValues={{
+        area: updateData?.land.area || '',
+        precio_comercial: updateData?.land.precio_comercial || '',
+        tipo_terreno: updateData?.land.tipo_terreno || '',
+        cerca_fuentes: updateData?.land.cerca_fuentes || ''
+      }}
+    >
       <Item label='Area' name='area' rules={[{ required: true, message: 'Campo requerido' }]}>
         <Input type='number' />
       </Item>

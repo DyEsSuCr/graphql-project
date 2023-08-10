@@ -13,8 +13,7 @@ import { Button } from 'antd'
 import { useState } from 'react'
 import Link from 'next/link'
 
-export default function Predio() {
-
+export default function Predio () {
   const [toggle, setToggle] = useState(false)
 
   const { query, push } = useRouter()
@@ -44,7 +43,7 @@ export default function Predio() {
   return (
     <div style={{ display: 'flex', gap: '2rem', flexDirection: 'column' }}>
       <div className='predioHeader'>
-        <Link href={'/'} style={{ fontSize: '28px', cursor: 'pointer' }}>🔙</Link>
+        <Link href='/' style={{ fontSize: '28px', cursor: 'pointer' }}>🔙</Link>
         <h3>Nombre predio: {data.property.nombre}</h3>
         <div>
           <Button type='primary' onClick={() => setToggle(true)}>Editar</Button>
@@ -59,7 +58,7 @@ export default function Predio() {
       <ListConstrucciones data={data} predioId={query.id} />
       <ListPropietarios data={data} predioId={query.id} />
 
-      <ModalForm title='Actualizar predio' toggle={toggle} setToggle={setToggle} >
+      <ModalForm title='Actualizar predio' toggle={toggle} setToggle={setToggle}>
         <FormPredio setToggle={setToggle} predioId={query.id} updateData={data} />
       </ModalForm>
     </div>
