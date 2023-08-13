@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client'
 
-export const GET_PREDIOS = gql`
-  {
+export const GET_PROPERTYS = gql`
+  query {
     propertys {
       id
       nombre
@@ -12,7 +12,7 @@ export const GET_PREDIOS = gql`
   }
 `
 
-export const GET_PREDIO = gql`
+export const GET_PROPERTY = gql`
   query ($id: ID!) {
     property(id: $id) {
       avaluo
@@ -51,7 +51,7 @@ export const GET_PREDIO = gql`
   }
 `
 
-export const GET_PREDIO_TERRENO = gql`
+export const GET_PROPERTY_LAND = gql`
   query ($id: ID!) {
     property(id: $id) {
       terreno {
@@ -65,18 +65,7 @@ export const GET_PREDIO_TERRENO = gql`
   }
 `
 
-export const UPDATE_PREDIO = gql`
-  mutation($id: ID!, $avaluo: Float, $departamento: String, $municipio: String, $nombre: String) {
-    updateProperty(id: $id, avaluo: $avaluo, departamento: $departamento, municipio: $municipio, nombre: $nombre) {
-      id
-      avaluo
-      departamento
-      nombre
-    }
-  }
-`
-
-export const GET_PREDIO_CONSTRUNCCIONES = gql`
+export const GET_PROPERTY_BUILD = gql`
   query ($id: ID!) {
     property(id: $id) {
       construccion {
@@ -86,28 +75,6 @@ export const GET_PREDIO_CONSTRUNCCIONES = gql`
         direccion
         tipo_construccion
       }
-    }
-  }
-`
-
-export const ADD_PREDIO = gql`
-  mutation($avaluo: Float!, $nombre: String!, $departamento: String!, $municipio: String!) {
-    insertProperty(avaluo: $avaluo, nombre: $nombre, departamento: $departamento, municipio: $municipio) {
-      id
-      avaluo
-      departamento
-      nombre
-    }
-  }
-`
-
-export const REMOVE_PREDIO = gql`
-  mutation($id: ID!) {
-    removeProperty(id: $id) {
-      id
-      avaluo
-      departamento
-      nombre
     }
   }
 `
