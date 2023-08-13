@@ -1,7 +1,7 @@
 import { getClient } from '@/libs/apolloClient'
 import { GET_PROPERTYS } from '@/graphql/propertys/querys'
 import { ModalForm } from '@/components/ModalForm'
-import { Table } from '@/components/ui/Table'
+import { Table } from '@/components/Table'
 
 export default async function Page () {
   const { data } = await getClient().query({

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { ModalForm } from './ModalForm'
 import { Property } from '@/interfaces/propertys.interface'
-import { Button } from 'antd'
+import { ButtonRemove } from './ButtonRemove'
 
 export default function HeaderProperty ({ property }: { property: Property }) {
   return (
@@ -11,7 +11,7 @@ export default function HeaderProperty ({ property }: { property: Property }) {
         <h3>Nombre predio: {property.nombre}</h3>
         <div>
           <ModalForm title='Editar Predio' />
-          <Button danger>Eliminar</Button>
+          <ButtonRemove predioId={property.id} />
         </div>
       </header>
 
