@@ -14,7 +14,7 @@ export default function HeaderProperty ({ property }: { property: Property }) {
           <ModalForm title='Editar Predio'>
             <FormProperty updateData={property} />
           </ModalForm>
-          <ButtonRemove predioId={property.id ?? ''} />
+          <ButtonRemove id={property.id ?? ''} />
         </div>
       </header>
 

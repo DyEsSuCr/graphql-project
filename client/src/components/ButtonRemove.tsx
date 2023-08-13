@@ -5,12 +5,16 @@ import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/navigation'
 import { Button } from 'antd'
 
-export const ButtonRemove = ({ predioId }: { predioId: string }) => {
+interface Props {
+  id: string
+}
+
+export const ButtonRemove = ({ id }: Props) => {
   const router = useRouter()
   const [deleteProperty] = useMutation(DELETE_PROPERTY)
 
   const remove = () => {
-    void deleteProperty({ variables: { id: predioId } })
+    void deleteProperty({ variables: { id } })
     router.push('/')
   }
 
