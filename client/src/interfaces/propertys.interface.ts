@@ -1,5 +1,5 @@
 export interface Property {
-  id: string
+  id?: string
   nombre: string
   avaluo: number
   municipio: string
