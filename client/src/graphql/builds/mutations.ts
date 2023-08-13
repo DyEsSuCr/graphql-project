@@ -24,7 +24,7 @@ export const UPDATE_BUILD = gql`
   }
 `
 
-export const REMOVE_BUILD = gql`
+export const DELETE_BUILD = gql`
   mutation($id: ID!) {
     removeBuild(id: $id) {
       id

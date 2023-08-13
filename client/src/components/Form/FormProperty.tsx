@@ -1,12 +1,12 @@
 'use client'
 
-import { Form } from './Form'
-import { Item } from './Item'
-import { Form as FormAntd } from 'antd'
-import { useMutation } from '@apollo/client'
 import { CREATE_PROPERTY, UPDATE_PROPERTY } from '@/graphql/propertys/mutations'
 import { Property } from '@/interfaces/propertys.interface'
+import { Form } from './Form'
+import { Item } from './Item'
 import { useState } from 'react'
+import { Form as FormAntd } from 'antd'
+import { useMutation } from '@apollo/client'
 
 interface Props {
   updateData?: Property
@@ -33,12 +33,14 @@ export function FormProperty ({ updateData }: Props) {
         departamento: data.municipio
       }
     })
+
+    form.resetFields()
   }
 
   const updateSuccess = (data: Property) => {
     void updateProperty({
       variables: {
-        id: data.id,
+        id: updateData?.id,
         nombre: data.municipio,
         avaluo: Number(data.avaluo),
         municipio: data.municipio,

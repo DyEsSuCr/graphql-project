@@ -1,3 +1,5 @@
+'use client'
+
 import { Form, Input, Button, Select, Checkbox } from 'antd'
 
 interface Props {

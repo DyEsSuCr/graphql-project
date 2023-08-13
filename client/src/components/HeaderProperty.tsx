@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { ModalForm } from './ModalForm'
 import { Property } from '@/interfaces/propertys.interface'
 import { ButtonRemove } from './ButtonRemove'
+import { FormProperty } from './Form/FormProperty'
 
 export default function HeaderProperty ({ property }: { property: Property }) {
   return (
@@ -10,8 +11,10 @@ export default function HeaderProperty ({ property }: { property: Property }) {
         <Link href='/' className='text-lg cursor-pointer'>🔙</Link>
         <h3>Nombre predio: {property.nombre}</h3>
         <div>
-          <ModalForm title='Editar Predio' />
-          <ButtonRemove predioId={property.id} />
+          <ModalForm title='Editar Predio'>
+            <FormProperty updateData={property} />
+          </ModalForm>
+          <ButtonRemove predioId={property.id ?? ''} />
         </div>
       </header>
 
