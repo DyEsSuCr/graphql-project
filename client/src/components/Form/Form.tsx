@@ -1,14 +1,14 @@
 'use client'
 
-import { Property } from '@/interfaces/propertys.interface'
+import { Build, Land, Property } from '@/interfaces/propertys.interface'
 import { Form as FormAntd, FormInstance } from 'antd'
 
 interface Props {
   form: FormInstance
   name: string
   updateData?: Object
-  updateSuccess: (data: Property) => void
-  createSuccess: (data: Property) => void
+  updateSuccess: (data: Property | Land | Build) => void
+  createSuccess: (data: Property | Land | Build) => void
   initialValues: Object
   children: React.ReactNode
 }
