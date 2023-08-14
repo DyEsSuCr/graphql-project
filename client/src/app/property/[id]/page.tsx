@@ -15,11 +15,6 @@ export default async function PropertyComponet ({ params }: Props) {
     query: GET_PROPERTY,
     variables: {
       id: params.id
-    },
-    context: {
-      fetchOptions: {
-        next: { revalidate: 5 }
-      }
     }
   })
 

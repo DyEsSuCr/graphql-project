@@ -5,14 +5,7 @@ import { Table } from '@/components/Table'
 import { FormProperty } from '@/components/Form/FormProperty'
 
 export default async function Page () {
-  const { data } = await getClient().query({
-    query: GET_PROPERTYS,
-    context: {
-      fetchOptions: {
-        next: { revalidate: 5 }
-      }
-    }
-  })
+  const { data } = await getClient().query({ query: GET_PROPERTYS, partialRefetch: true })
 
   return (
     <>

@@ -8,7 +8,7 @@ interface Props {
   name?: string
   typeInput?: string
   loading?: boolean
-  options?: Object | string[]
+  options?: string[]
 }
 
 export function Item ({ typeItem, label, name, typeInput, loading, options }: Props) {
