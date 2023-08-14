@@ -7,6 +7,7 @@ import { Item } from './Item'
 import { useState } from 'react'
 import { Form as FormAntd } from 'antd'
 import { useMutation } from '@apollo/client'
+import { GET_PROPERTYS } from '@/graphql/propertys/querys'
 
 interface Props {
   updateData?: Property
@@ -14,8 +15,26 @@ interface Props {
 
 export function FormProperty ({ updateData }: Props) {
   const [form] = FormAntd.useForm()
-  const [createProperty] = useMutation(CREATE_PROPERTY)
-  const [updateProperty] = useMutation(UPDATE_PROPERTY)
+
+  const [createProperty] = useMutation(CREATE_PROPERTY, {
+    refetchQueries: [
+      {
+        query: GET_PROPERTYS
+      },
+      'GET_PROPERTYS'
+    ],
+    awaitRefetchQueries: true
+  })
+
+  const [updateProperty] = useMutation(UPDATE_PROPERTY, {
+    refetchQueries: [
+      {
+        query: GET_PROPERTYS
+      },
+      'GET_PROPERTYS'
+    ],
+    awaitRefetchQueries: true
+  })
 
   const [initialValues] = useState({
     nombre: updateData?.nombre ?? '',

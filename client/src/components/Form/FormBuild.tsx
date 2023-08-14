@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { Form as FormAntd } from 'antd'
 import { useMutation } from '@apollo/client'
 import { CREATE_BUILD, UPDATE_BUILD } from '@/graphql/builds/mutations'
+import { GET_PROPERTY_BUILD } from '@/graphql/propertys/querys'
 
 interface Props {
   updateData?: Build
@@ -15,8 +16,30 @@ interface Props {
 
 export function FormBuild ({ updateData, predioId }: Props) {
   const [form] = FormAntd.useForm()
-  const [createBuild] = useMutation(CREATE_BUILD)
-  const [updateBuild] = useMutation(UPDATE_BUILD)
+  const [createBuild] = useMutation(CREATE_BUILD, {
+    refetchQueries: [
+      {
+        query: GET_PROPERTY_BUILD,
+        variables: {
+          id: predioId
+        }
+      },
+      'GET_PROPERTY_BUILD'
+    ],
+    awaitRefetchQueries: true
+  })
+  const [updateBuild] = useMutation(UPDATE_BUILD, {
+    refetchQueries: [
+      {
+        query: GET_PROPERTY_BUILD,
+        variables: {
+          id: predioId
+        }
+      },
+      'GET_PROPERTY_BUILD'
+    ],
+    awaitRefetchQueries: true
+  })
 
   const [initialValues] = useState({
     area: updateData?.area ?? '',

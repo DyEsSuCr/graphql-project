@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { Form as FormAntd } from 'antd'
 import { useMutation } from '@apollo/client'
 import { CREATE_LAND, UPDATE_LAND } from '@/graphql/lands/mutations'
+import { GET_PROPERTY_LAND } from '@/graphql/propertys/querys'
 
 interface Props {
   updateData?: Land
@@ -16,8 +17,30 @@ interface Props {
 export function FormLand ({ updateData, predioId }: Props) {
   const [form] = FormAntd.useForm()
 
-  const [createLand] = useMutation(CREATE_LAND)
-  const [updateLand] = useMutation(UPDATE_LAND)
+  const [createLand] = useMutation(CREATE_LAND, {
+    refetchQueries: [
+      {
+        query: GET_PROPERTY_LAND,
+        variables: {
+          id: predioId
+        }
+      },
+      'GET_PROPERTY_LAND'
+    ],
+    awaitRefetchQueries: true
+  })
+  const [updateLand] = useMutation(UPDATE_LAND, {
+    refetchQueries: [
+      {
+        query: GET_PROPERTY_LAND,
+        variables: {
+          id: predioId
+        }
+      },
+      'GET_PROPERTY_LAND'
+    ],
+    awaitRefetchQueries: true
+  })
 
   const [initialValues] = useState({
     area: updateData?.area ?? '',
@@ -54,7 +77,7 @@ export function FormLand ({ updateData, predioId }: Props) {
 
   return (
     <Form form={form} name='lands' initialValues={initialValues} updateData={updateData} createSuccess={createSuccess} updateSuccess={updateSuccess}>
-      <Item typeItem='input' label='Area' name='area' typeInput='text' />
+      <Item typeItem='input' label='Area' name='area' typeInput='number' />
       <Item typeItem='input' label='Precio' name='precio_comercial' typeInput='number' />
       <Item typeItem='select' options={['RURAL', 'URBANO']} label='Tipo de terreno' name='tipo_terreno' />
       <Item typeItem='check' label='Cerca de fuentes' name='cerca_fuentes' />

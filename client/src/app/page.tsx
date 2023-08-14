@@ -1,11 +1,13 @@
-import { getClient } from '@/libs/apolloClient'
+'use client'
+
 import { GET_PROPERTYS } from '@/graphql/propertys/querys'
 import { ModalForm } from '@/components/ModalForm'
 import { Table } from '@/components/Table'
 import { FormProperty } from '@/components/Form/FormProperty'
+import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr'
 
-export default async function Page () {
-  const { data } = await getClient().query({ query: GET_PROPERTYS, partialRefetch: true })
+export default function Page () {
+  const { data } = useSuspenseQuery(GET_PROPERTYS)
 
   return (
     <>
