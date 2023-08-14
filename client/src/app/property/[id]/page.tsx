@@ -1,4 +1,6 @@
+import { Builds } from '@/components/Builds'
 import HeaderProperty from '@/components/HeaderProperty'
+import { Lands } from '@/components/Lands'
 import { GET_PROPERTY } from '@/graphql/propertys/querys'
 import { getClient } from '@/libs/apolloClient'
 
@@ -22,6 +24,10 @@ export default async function PropertyComponet ({ params }: Props) {
   })
 
   return (
-    <HeaderProperty property={property} />
+    <div className='flex flex-col gap-10'>
+      <HeaderProperty property={property} />
+      <Lands land={property.terreno} />
+      <Builds builds={property.construccion} />
+    </div>
   )
 }
