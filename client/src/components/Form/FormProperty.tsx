@@ -27,10 +27,10 @@ export function FormProperty ({ updateData }: Props) {
   const createSuccess = (data: Property) => {
     void createProperty({
       variables: {
-        nombre: data.municipio,
+        nombre: data.nombre,
         avaluo: Number(data.avaluo),
         municipio: data.municipio,
-        departamento: data.municipio
+        departamento: data.departamento
       }
     })
 
@@ -41,10 +41,10 @@ export function FormProperty ({ updateData }: Props) {
     void updateProperty({
       variables: {
         id: updateData?.id,
-        nombre: data.municipio,
+        nombre: data.nombre,
         avaluo: Number(data.avaluo),
         municipio: data.municipio,
-        departamento: data.municipio
+        departamento: data.departamento
       }
     })
   }
