@@ -5,7 +5,7 @@ interface Props {
 }
 
 export function List ({ data, errorTitle, children }: Props) {
-  if (!data) {
+  if (!data || data <= 0) {
     return (
       <div className='flex justify-between items-center border border-white'>
         <h2>{errorTitle}</h2>
