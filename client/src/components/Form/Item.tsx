@@ -36,7 +36,7 @@ export function Item ({ typeItem, label, name, typeInput, loading, options }: Pr
       </ItemAntd>
     ),
     check: (
-      <ItemAntd name='cerca_fuentes' valuePropName='checked'>
+      <ItemAntd name={name} valuePropName='checked'>
         <Checkbox>Cerca de fuentes?</Checkbox>
       </ItemAntd>
     ),
