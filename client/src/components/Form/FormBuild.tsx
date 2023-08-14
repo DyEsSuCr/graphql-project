@@ -10,9 +10,10 @@ import { CREATE_BUILD, UPDATE_BUILD } from '@/graphql/builds/mutations'
 
 interface Props {
   updateData?: Build
+  predioId: string
 }
 
-export function FormBuild ({ updateData }: Props) {
+export function FormBuild ({ updateData, predioId }: Props) {
   const [form] = FormAntd.useForm()
   const [createBuild] = useMutation(CREATE_BUILD)
   const [updateBuild] = useMutation(UPDATE_BUILD)
@@ -30,7 +31,8 @@ export function FormBuild ({ updateData }: Props) {
         area: Number(data.area),
         direccion: data.direccion,
         pisos: Number(data.pisos),
-        tipo_construccion: data.tipo_construccion
+        tipo_construccion: data.tipo_construccion,
+        predioId
       }
     })
 

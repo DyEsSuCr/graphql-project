@@ -20,7 +20,7 @@ export function Form ({ form, name, updateData, updateSuccess, createSuccess, in
       name={name}
       initialValues={initialValues}
       onFinishFailed={(err) => console.log(err)}
-      onFinish={(data: Property) => updateData ? updateSuccess(data) : createSuccess(data)}
+      onFinish={(data) => updateData ? updateSuccess(data) : createSuccess(data)}
     >
       {children}
     </FormAntd>

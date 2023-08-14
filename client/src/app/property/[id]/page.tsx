@@ -26,8 +26,8 @@ export default async function PropertyComponet ({ params }: Props) {
   return (
     <div className='flex flex-col gap-10'>
       <HeaderProperty property={property} />
-      <Lands land={property.terreno} />
-      <Builds builds={property.construccion} />
+      <Lands land={property.terreno} predioId={params.id} />
+      <Builds builds={property.construccion} predioId={params.id} />
     </div>
   )
 }

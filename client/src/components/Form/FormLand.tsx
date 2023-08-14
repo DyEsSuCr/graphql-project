@@ -10,10 +10,12 @@ import { CREATE_LAND, UPDATE_LAND } from '@/graphql/lands/mutations'
 
 interface Props {
   updateData?: Land
+  predioId: string
 }
 
-export function FormLand ({ updateData }: Props) {
+export function FormLand ({ updateData, predioId }: Props) {
   const [form] = FormAntd.useForm()
+
   const [createLand] = useMutation(CREATE_LAND)
   const [updateLand] = useMutation(UPDATE_LAND)
 
@@ -27,10 +29,11 @@ export function FormLand ({ updateData }: Props) {
   const createSuccess = (data: Land) => {
     void createLand({
       variables: {
-        area: data.area,
+        area: Number(data.area),
         cerca_fuentes: data.cerca_fuentes,
         precio_comercial: Number(data.precio_comercial),
-        tipo_terreno: data.tipo_terreno
+        tipo_terreno: data.tipo_terreno,
+        predioId
       }
     })
 
@@ -41,7 +44,7 @@ export function FormLand ({ updateData }: Props) {
     void updateLand({
       variables: {
         id: updateData?.id,
-        area: data.area,
+        area: Number(data.area),
         cerca_fuentes: data.cerca_fuentes,
         precio_comercial: Number(data.precio_comercial),
         tipo_terreno: data.tipo_terreno
